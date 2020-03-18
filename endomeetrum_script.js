@@ -78,30 +78,28 @@
     }
 
     function replacetext(input) {
-        var str = $(input).val()
+        var str = input.value
         str = str.replace(/[^0-9,\.]+/g, "");
         str = str.replace(/[,\.]+/g, ".")
         input.value = str
     }
 
-    function sumtable(tableId, heading, txtBeforeSum) {
-        var totals = [0,0,0,0,0]
+    function sumtable(lymphdiv, heading, txtBeforeSum) {
+        totals = []
         var str = []
         var ans = []
-        var table = document.getElementById(tableId)
+        var table = document.getElementById($(lymphdiv + " table:visible").attr("id"))
         var nrOfRows = table.rows.length;
-
-        const locationString = table.rows[0].cells[0].firstChild.textContent;
-        for (var i = 0; i < nrOfRows; i++) {
-            if (table.rows[i].cells[0].firstChild.value) {
-                str.push(locationString + table.rows[i].cells[0].firstChild.value);
-            } else {
-                str.push(locationString + table.rows[i].cells[0].textContent);
-            }
-            for (var j = 1; j < 7; j++) {
+        var nrOfCells = table.rows[0].cells.length
+        for (var i = 1; i < nrOfRows; i++) {
+            for (var j = 0; j < nrOfCells ; j++) {
                 var colValue = table.rows[i].cells[j].firstChild.value;
-                if (colValue) {
-                    totals[j-1]+=parseFloat(colValue)
+                if (!isNaN(colValue) && colValue) {
+                    if (isNaN(totals[j])){totals.push(0)}
+                    totals[j]+=parseFloat(colValue)
+                    str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
+                } else {
+                    totals[j] = null
                     str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
                 }
             }
@@ -110,21 +108,24 @@
             }
             str = []
         }
-        if (totals[0] ==  0) {
+        if (totals.reduce((a, b) => a + b) == 0) {
             return
         } else {
             $('#results_block').append(heading + "<br/>" + ans.join("") + txtBeforeSum + "<br/>")
-            for (var i = 0; i < totals.length-1; i++) {
-                str.push(table.rows[0].cells[i+1].firstChild.textContent + totals[i] + "<br/>")
+            for (var i = 0; i < totals.length; i++) {
+                if (totals[i] === null) {
+                    continue
+                } else {
+                    str.push(table.rows[0].cells[i].firstChild.textContent + totals[i] + "<br/>")
+                }
             } 
-            $('#results_block').append(str.join("") + "<br/>");
+            $('#results_block').append(str.join("") + "<br/>")
         }
     }
-
+        
 $(document).ready(function(){
 
-
-    $("input[class*='only_numbers']").keyup(function (){
+    $('body').on("keyup", '.only_numbers', function (){
         replacetext(this)
     })
     $('body').on("click", "#copy_result_btn", function () {
