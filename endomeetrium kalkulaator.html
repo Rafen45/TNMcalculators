@@ -1,0 +1,607 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" content="Pathology.ee | Patoloogia infoportaal">
+        <meta name="theme-color" content="#5f6e72">
+        <link rel="icon" href="/images/orange-icon.ico">
+        <meta name="csrf-param" content="_csrf">
+        <meta name="csrf-token" content="8uTYzpz9sMw1wxiwNf1fl4ziUuyKAwqmnJPWSvBfLW7Gg6CfpIvVlA33VfFFpDr766oHqvJ0Z-Cs4ZB7hD54Xg==">
+        <link href="stylesheet.css" type="text/css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="endomeetrum_script.js"></script>
+    </head>
+    <body>
+        
+        <div class="calc-form grey-form" style="max-width:800px; margin-bottom: 30px;">
+            <h1 class="form-title">Endomeetriumi kartsinoom või kartsionosarkoom </h1>
+            <table id="tumor_site" style="margin-top: 3px;">
+                <h3>Tuumori asukoht</h3>
+                <tbody><tr>
+                    <td>                    
+                        <input type="checkbox" id="tumor_site_endometrium" name="localisation" class="localisation" value="Endomeetrium">                        
+                        <label for="tumor_site_endometrium">Endomeetrium</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>                    
+                        <input type="checkbox" id="tumor_site_l_segment" name="localisation" class="localisation" value="Emaka alumine segment">                        
+                        <label for="tumor_site_l_segment">Emaka alumine segment</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>                    
+                        <input type="checkbox" id="tumor_site_endometrial_polyp" name="localisation" class="localisation" value="Endometriaalne polüüp">                        
+                        <label for="tumor_site_endometrial_polyp">Endometriaalne polüüp</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>                    
+                        <input type="checkbox" id="tumor_site_other" name="localisation" class="localisation" value="Muu" onclick="cboxInput(this)">                        
+                        <label for="tumor_site_other">Muu</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>                    
+                        <input type="checkbox" id="tumor_site_CD" name="localisation" class="localisation" value="Ei saa hinnata" onclick="cboxInput(this)">                        
+                        <label for="tumor_site_CD">Ei saa hinnata</label>
+                    </td>
+                </tr>
+            </tbody></table>
+            <br>
+
+            <h3>Tuumori suurus</h3>
+                
+            <table id="tumor_size" class="tumor_sizes">
+                <tbody><tr>
+                    <td>
+                        <label for="tumor_max">Maksimaalne mõõt (cm)</label>
+                    </td>
+                    <td>
+                        <label for="tumor_additional1"> +lisamõõt(cm)</label>
+                    </td>
+                    <td>
+                        <label for="tumor_additional2">+lisamõõt (cm)</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="tumor_max" class="only_numbers" placeholder="0" >
+                    </td>
+                    <td>
+                        <input type="text" id="tumor_additional1" class="only_numbers" placeholder="0">
+                    </td>
+                    <td>
+                        <input type="text" id="tumor_additional2" class="only_numbers" placeholder="0">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding-top: 8px;">
+                        <input type="checkbox" id="tumor_another" class="tumor_sizes" onclick="show_hide('#tumor_another', '#tumor_another_text')">
+                        <label for="tumor_another">Muu (cm)</label>
+                    </td>                    
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="tumor_another_text" class="tumor_sizes" style=" display: none;" placeholder="cm">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox" id="tumor_X" class="tumor_sizes" onclick="disable_class(this); cboxInput(this)">
+                        <label for="tumor_X">Ei saa mõõta</label>
+                    </td>
+                </tr>
+            </tbody></table>
+            <br>
+
+
+            <h3>Tuumori histoloogiline tüüp</h3>
+
+            <div>
+                <select id="tumor_type" style="padding: 4px 4px;">
+    
+                    <option value="empty" selected="selected">jäta tühjaks</option>
+                    <option>Endometrioidne kartsinoom, NOS</option>
+                    <option>Endometrioidne kartsinoom lamerakulise diferentseeumisega</option>
+                    <option>Endometrioidne kartsinoom, villoglandulaarne variant</option>
+                    <option>Endometrioidne kartsinoom sekretoorse diferentseeumisega</option>
+                    <option>Endometrioidne kartsinoom, muu variant</option>
+                    <option>Seroosne endometriaalne intraepiteliaalne kartsinoom</option>
+                    <option>Seroosne kartsinoom</option>
+                    <option>Kartsionosarkoom</option>
+                    <option>Mutsinoosne kartsinoom</option>
+                    <option>Helerakuline kartsinoom</option>
+                    <option>Väikerakk neuroendikriinne kartsinoom</option>
+                    <option>Suurerakuline neuroendikriinne kartsinoom</option>
+                    <option>Segarakk kartsinoom</option>
+                    <option>Diferentseerumata kartsinoom</option>
+                    <option>Dediferentseerunud kartsinoom</option>
+                    <option>Muu</option>
+                </select>
+                <div id="histotype_text_div" style="display: none;"><br>
+                    <textarea id="histotype_text" rows="4" cols="50" placeholder="täpsusta"></textarea>
+                </div>
+            </div>
+            
+            <br><br>            
+        
+            
+            <div id=histologic_grade_div style="display: none;">
+                <h3>Histoloogiline aste (FIGO)
+                    <span class="tooltip">
+                        <img src="info.png" style="width: 18px;height: 18px; " alt="i">
+                        <p class="tooltiptext">International Federation of Gynecology and Obstetrics (FIGO) Grading System applies to endometrioid and 
+                            mucinous carcinomas <b>only</b>. Serous, clear cell, transitional, small cell and large cell neuroendocrine carcinomas, 
+                            undifferentiated/ dedifferentiated carcinomas, and carcinosarcomas are generally considered to be high grade and it is not 
+                            recommended to assign a histologic grade to these tumor types.
+                        </p>
+                    </span><br>
+                </h3>
+                <input type="radio" id="FIGO1" name="histograde" value="FIGO 1" onclick="radioInput(this, false)">
+                <label for="FIGO1">FIGO 1 ( &lt;=5% mittelamerakulist soliidala)  </label><br>            
+                <input type="radio" id="FIGO2" name="histograde" value="FIGO 2" onclick="radioInput(this, false)">
+                <label for="FIGO1">FIGO 2 ( 6% - 50% mittelamerakulist soliidala)</label><br>
+                <input type="radio" id="FIGO3" name="histograde" value="FIGO 3" onclick="radioInput(this, false)">
+                <label for="FIGO1">FIGO 3 ( &gt;50% mittelamerakulist soliidala)</label><br>
+                <input type="radio" id="FIGO_other" name="histograde" value="Muu" onclick="radioInput(this, true, 'sibling')">
+                <label for="FIGO1">Muu</label><br>
+                <input type="radio" id="FIGO_NA" name="histograde" value="Ei saa hinnata" onclick="radioInput(this, true, 'sibling')">
+                <label for="FIGO1">Ei saa hinnata</label><br>
+            </div>
+
+            <br><br>
+
+            <h3>Müometriaalne invasioon</h3>
+            <table id="myometrial_invasion_table">
+                <tr>
+                    <td>
+                        <input type="radio" 
+                                id="myometrial_invasion_NA" 
+                                name="myometrial_invasion" 
+                                value="Pole tuvastatud"
+                                onclick="radioInput(this, false)">                                
+                        <label for="myometrial_invasion_NA">Pole tuvastatud</label><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" 
+                                id="myometrial_invasion_present" 
+                                name="myometrial_invasion" 
+                                value="Esineb"
+                                onclick="radioInput(this, false); activatefilter()">                                
+                        <label for="myometrial_invasion_present">Esineb</label><br>
+                    </td>
+                </tr>
+                <tr >
+                    <td>
+                        <div id = "myometrial_invasion_details"  style="display: none;">
+                            <label for="myometrial_invasion_depth">Müometriaalse invastiooni sügavus </label>
+                            <input type="text" class="only_numbers" id="myometrial_invasion_depth" style="width: 35px;  height: 10px;" > mm<br><br>
+                            <div id="myometrial_invasion_measurements">
+                                <label for="myometrial_invasion_percent">Müometriaalse invastiooni osakaal </label>
+                                <input type="text" class="only_numbers" id="myometrial_invasion_percent" style="width: 25px; height: 10px;">%<br>
+                            </div>
+                            <br>
+                            <input type="checkbox" 
+                                    id="myometrial_invasion_present_not_known" 
+                                    name="myometrial_invasion_approx" 
+                                    value="percentage_not_known" 
+                                    onclick="show_hide(this , '#myometrial_invasion_measurements', 'hide'); show_hide(this , '#myometrial_invasion_present_not_known_details')">
+                            <label for="myometrial_invasion_present_not_known">Täpset invastiooni osakaalu ei saa määrata</label><br>
+                            <br>
+                            <div id="myometrial_invasion_present_not_known_details" style="display: none;">
+                                <label for="myometrial_invasion_depth_not_known">Müometriaalse invastiooni sügavust ei saa hinnata </label>
+                                <input type="text" id="myometrial_invasion_depth_not_known" placeholder="Täpsusta"><br>
+                                <label for="myometrial_invasion_percent_not_known">Müometriaalset paksust ei saa hinnata </label>
+                                <input type="text" id="myometrial_invasion_percent_not_known" placeholder="Täpsusta"><br>
+                                <br>
+                                <p>Hinnanguline müomeetriaalne invastioon</p>
+                                <input type="radio" id="estimated_MI_u50" name="estimated_mi_percent" value="Alla 50%" >
+                                <label for="estimated_MI_u50">Alla 50%</label><br>
+                                <input type="radio" id="estimated_MI_o50" name="estimated_mi_percent" value="Üle 50%" >
+                                <label for="estimated_MI_o50">Üle 50%</label><br><br>         
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="radio" id="myometrial_invasion_CD" name="myometrial_invasion" value="Ei saa hinnata" onclick="radioInput(this, true)">
+                        <label for="myometrial_invasion_CD">Ei saa hinnata</label>
+                    </td>
+                </tr>
+            </table>
+
+            <br><br>
+
+            <h3>Adenomüoos</h3>
+            <div>
+                <input type="radio" id="Adenomyosis_NA" name="Adenomyosis" value="Pole tuvastatud" onclick="radioInput(this, false)">
+                <label for="Adenomyosis_NA">Pole tuvastatud</label><br>
+                <input type="radio" id="Adenomyosis_present_uninvolved" name="Adenomyosis" value="Esineb, kartsinoomiga mitteseotud" onclick="radioInput(this, false)">
+                <label for="Adenomyosis_present_uninvolved">Esineb, kartsinoomiga mitteseotud</label><br>
+                <input type="radio" id="Adenomyosis_present_involved" name="Adenomyosis" value="Esineb, kartsinoomiga seotud" onclick="radioInput(this, false)">
+                <label for="Adenomyosis_present_involved">Esineb, kartsinoomiga seotud</label><br>
+                <input type="radio" id="Adenomyosis_CD" name="Adenomyosis" value="Ei saa hinnata" onclick="radioInput(this, true)">
+                <label for="Adenomyosis_CD">Ei saa hinnata</label>
+            </div>
+
+            <br><br>
+
+            <h3>Perimeetriumi haaratus</h3>
+            <div>
+                <input type="radio" id="uterine_serosa_NA" name="uterine_serosa" value="Pole tuvastatud" onclick="radioInput(this, false)"> 
+                <label for="uterine_serosa_NA">Pole tuvastatud</label><br>
+                <input type="radio" id="uterine_serosa_present" name="uterine_serosa" value="Esineb" onclick="radioInput(this, false)">
+                <label for="uterine_serosa_present">Esineb</label><br>
+                <input type="radio" id="uterine_serosa_CD" name="uterine_serosa" value="Ei saa hinnata" onclick="radioInput(this, true)">
+                <label for="uterine_serosa_CD">Ei saa hinnata</label>
+            </div>
+            
+            <br><br>
+
+            <h3>Emaka alumise segmendi haaratus</h3>
+            <div>
+                <input type="radio" id="low_uterine_segment_NA" name="low_uterine_segment" value="Pole tuvastatud" onclick="radioInput(this, false)">
+                <label for="low_uterine_segment_NA">Pole tuvastatud</label><br>
+                <input type="radio" id="low_uterine_segment_present_sup" name="low_uterine_segment" value="Esineb pindmine (mittemüoinvasiivne)" onclick="radioInput(this, false)">
+                <label for="low_uterine_segment_present_sup">Esineb pindmine (mittemüoinvasiivne) </label><br>
+                <input type="radio" id="low_uterine_segment_present_myoinvasive" name="low_uterine_segment" value="Esineb, (müoinvasiivne)" onclick="radioInput(this, false)">
+                <label for="low_uterine_segment_present_myoinvasive">Esineb, müoinvasiivne</label><br>
+                <input type="radio" id="low_uterine_segment_present" name="low_uterine_segment" value="Esineb" onclick="radioInput(this, true, 'sibling')">
+                <label for="low_uterine_segment_present">Esineb</label><br> 
+                <input type="radio" id="low_uterine_segment_CD" name="low_uterine_segment" value="Ei saa hinnata" onclick="radioInput(this, true, 'sibling')">
+                <label for="low_uterine_segment_CD">Ei saa hinnata</label>
+            </div>
+
+            <br><br>
+
+            <h3>Emakakaela strooma haaratus</h3>
+            <div>
+                <input type="radio" id="cervical_stroma_NA" name="cervical_stroma" value="Pole tuvastatud" onclick="radioInput(this, false)">
+                <label for="cervical_stroma_NA">Pole tuvastatud</label><br>
+                <input type="radio" id="cervical_stroma_present" name="cervical_stroma" value="Esineb" onclick="radioInput(this, false)">
+                <label for="cervical_stroma_present">Esineb</label><br>
+                <input type="radio" id="cervical_stroma_CD" name="cervical_stroma" value="Ei saa hinnata" onclick="radioInput(this, true)">
+                <label for="cervical_stroma_CD">Ei saa hinnata</label>
+            </div>
+ 
+            <br><br>
+
+            <h3>Teiste kudede/organite haaratus</h3>
+            <div>
+                <input type="radio" id="other_organ_involvement_NA" name="other_organ_involvement" value="Pole tuvastatud" 
+                    onclick="radioInput(this, false)">
+                <label for="cervical_stroma_NA">Pole tuvastatud</label><br>
+
+                <input type="radio" id="other_organ_involvement_present" name="other_organ_involvement" value="Esineb" 
+                    onclick="radioInput(this, false)">
+                <label for="other_organ_involvement_present">Esineb</label><br>
+
+                <input type="radio" id="other_organ_involvement_CD" name="other_organ_involvement" value="Ei saa hinnata" 
+                    onclick="radioInput(this, true)">
+                <label for="other_organ_involvement_CD">Ei saa hinnata</label>
+            </div>
+            <br><br>
+
+            <div id="organ_involvement_table" style="display: none;">
+                <table >
+                    <tbody>
+                        <tr>  
+                            <td>
+                                <input type="checkbox" id="organ_involvement_right_ovary" class="organ_involvement" value="Parem munasari">
+                                <label for="organ_involvement_Right ovary">Parem munasari</label>  <br>
+                                <input type="checkbox" id="organ_involvement_left_ovary" class="organ_involvement" value="Vasak munasari">
+                                <label for="organ_involvement_left_ovary">Vasak munasari</label>   <br>
+                                <input type="checkbox" id="organ_involvement_ovary" class="organ_involvement" value="Munasari">
+                                <label for="organ_involvement_ovary">Munasari (täpsustamata pool)</label>  <br>
+                            </td>                    
+                            
+                            <td>
+                                <input type="checkbox" id="organ_involvement_right_fallopian_tube" class="organ_involvement" value="Parem Munajuha">
+                                <label for="organ_involvement_right_fallopian_tube">Parem Munajuha</label>  <br>
+                                <input type="checkbox" id="organ_involvement_left_fallopian_tube" class="organ_involvement" value="Vasak Munajuha">
+                                <label for="organ_involvement_left_fallopian_tube">Vasak Munajuha</label>  <br>
+                                <input type="checkbox" id="organ_involvement_fallopian_tube" class="organ_involvement" value="Munajuha" >
+                                <label for="organ_involvement_fallopian_tube ">Munajuha (täpsustamata pool)</label>   <br>
+                            </td>
+                            
+    
+                            <td>
+                                <input type="checkbox" id="organ_involvement_right_parametrium" class="organ_involvement" value="Parem parameetrium">
+                                <label for="organ_involvement_right_parametrium">Parem parameetrium</label>   <br>
+                                <input type="checkbox" id="organ_involvement_left_parametrium" class="organ_involvement" value="Vasak parameetrium">
+                                <label for="organ_involvement_left_parametrium">Vasak parameetrium</label>   <br>
+                                <input type="checkbox" id="organ_involvement_parametrium" class="organ_involvement" value="parameetrium">
+                                <label for="organ_involvement_parametrium">Parameetrium (täpsustamata pool)</label>  <br>
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="organ_involvement_bladder_wall" class="organ_involvement" value="Põie sein">
+                                <label for="organ_involvement_bladder_wall">Põie sein</label>    <br>                        
+                                <input type="checkbox" id="organ_involvement_bladder_mucosa" class="organ_involvement" value="Põie limaskest">
+                                <label for="organ_involvement_bladder_mucosa">Põie limaskest</label>   <br>   
+                            </td>
+    
+                            <td>
+                                <input type="checkbox" id="organ_involvement_rectal_wall" class="organ_involvement" value="Rektumi sein">
+                                <label for="organ_involvement_rectal_wall"></label>Rektumi sein<br>   
+                                <input type="checkbox" id="organ_involvement_bowel_mucosa" class="organ_involvement" value="Soole limaskest">
+                                <label for="organ_involvement_bowel_mucosa">Soole limaskest</label>  <br>   
+                            </td>
+    
+    
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="organ_involvement_omentum" class="organ_involvement" value="Omentum">
+                                <label for="organ_involvement_omentum">Omentum</label>  
+                            </td>
+                            <td>
+                                <input type="checkbox" id="organ_involvement_Vagina" class="organ_involvement" value="Tupp">
+                                <label for="organ_involvement_Vagina">Tupp</label>    
+                            </td>
+                            <td>
+                                <input type="checkbox" id="organ_involvement_pelvic_wall" class="organ_involvement" value="Vaagna sein">
+                                <label for="organ_involvement_pelvic_wall">Vaagna sein</label>   
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td colspan="3">
+                                <input type="checkbox" id="organ_involvement_other" class="organ_involvement" value="Muud organid/koed" onclick="cboxInput(this)">
+                                <label for="organ_involvement_other">Muud organid/koed</label>   
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <br><br>
+
+            <h3>Peritoneaalvedelik</h3>
+            <div>
+                <input type="radio" id="ascitic_Fluid_NA" name="ascitic_Fluid" value="Pole uuritud/teadmata" onclick="radioInput(this, false)">
+                <label for="ascitic_Fluid_NA">Pole uuritud/teadmata</label><br>
+                <input type="radio" id="ascitic_Fluid_neg" name="ascitic_Fluid" value="Maliigsuse suhtes negatiivne" onclick="radioInput(this, false)">
+                <label for="ascitic_Fluid_neg">Maliigsuse suhtes negatiivne (normaalne) </label><br>
+                <input type="radio" id="ascitic_Fluid_sus" name="ascitic_Fluid" value="Atüüpiline ja/või kahtlane" onclick="radioInput(this, true, 'sibling')">
+                <label for="ascitic_Fluid_sus">Atüüpiline ja/või kahtlane</label><br>
+                <input type="radio" id="ascitic_Fluid_pos" name="ascitic_Fluid" value="Maliigne" onclick="radioInput(this, false)">
+                <label for="ascitic_Fluid_pos">Maliigne</label><br>
+                <input type="radio" id="ascitic_Fluid_nondiagnostic" name="ascitic_Fluid" value="Mittediagnostiline" onclick="radioInput(this, true, 'sibling')">
+                <label for="ascitic_Fluid_nondiagnostic">Mittediagnostiline</label><br>
+                <input type="radio" id="ascitic_Fluid_pending" name="ascitic_Fluid" value="Tulemus pole veel saabunud" onclick="radioInput(this, false)">
+                <label for="ascitic_Fluid_pending">Tulemus pole veel saabunud</label><br>
+            </div>
+
+            <br><br>
+
+            <h2>Piirid</h2><br>
+            <h3>Tupeköndi piir</h3>
+            <div>
+                <input type="radio" id="vaginal_cuff_CA" name="vaginal_cuff_margin" value="Ei saa hinnata" onclick="radioInput(this, false)">
+                <label for="vaginal_cuff_CA">Ei saa hinnata</label><br>
+                <input type="radio" id="vaginal_cuff_inv" name="vaginal_cuff_margin" value="Kasvaja poolt haaratud" onclick="radioInput(this, false)">
+                <label for="vaginal_cuff_inv">Kasvaja poolt haaratud</label><br>
+                <input type="radio" id="vaginal_cuff_uninv" name="vaginal_cuff_margin" value="Kasvaja poolt puutumata" onclick="radioInput(this, true)">
+                <label for="vaginal_cuff_uninv">Kasvaja poolt puutumata</label><br>
+                <div id="vaginal_cuff_uninv_div" style="display: none;">
+                    <label for="vaginal_cuff_uninv_text">Invasiivse kasvaja kaugus piirist </label>
+                </div>
+            </div>
+            
+            <br><br>
+            
+            <h3>Paratservikaalne piir</h3>
+            <div>
+                <input type="radio" id="Paracervical_CA" name="Paracervical_margin" value="Ei saa hinnata" onclick="radioInput(this, false)">
+                <label for="Paracervical_CA">Ei saa hinnata</label><br>
+                <input type="radio" id="Paracervical_inv" name="Paracervical_margin" value="Kasvaja poolt haaratud" onclick="radioInput(this, false)">
+                <label for="Paracervical_inv">Kasvaja poolt haaratud</label><br>
+                <input type="radio" id="Paracervical_uninv" name="Paracervical_margin" value="Kasvaja poolt puutumata" onclick="radioInput(this, true)">
+                <label for="Paracervical_uninv">Kasvaja poolt puutumata</label><br>
+                <div id = Paracervical_uninv_div style="display: none;">
+                    <label for="Paracervical_uninv_text">Invasiivse kasvaja kaugus piirist </label>
+                </div>
+            </div>
+            
+            <br><br>
+            
+            <h3>Lümfovaskulaarne invasioon</h3>
+           <div>
+                <input type="radio" id="lymphovascular_invasion_NA" name="lymphovascular_invasion" value="Pole tuvastatud" onclick="radioInput(this, false)">
+                <label for="lymphovascular_invasion_NA">Pole tuvastatud</label><br>
+                <input type="radio" id="lymphovascular_invasion_present" name="lymphovascular_invasion" value="Esineb" onclick="radioInput(this, false)">
+                <label for="lymphovascular_invasion_present">Esineb</label><br>
+                <input type="radio" id="lymphovascular_invasion_CD" name="lymphovascular_invasion" value="Ei saa hinnata" onclick="radioInput(this, true)">
+                <label for="lymphovascular_invasion_CD">Ei saa hinnata</label>
+           </div>
+            
+            <br><br>
+  
+                
+
+            <h2 class="h2">Regionaalsed lümfisõlmed
+            <span class="tooltip">
+                <img src="info.png" style="width: 20px;height: 20px;" alt="i">
+                <p class="tooltiptext">Lymph nodes designated as pelvic (parametrial, obturator, internal iliac (hypogastric), 
+                    external iliac, common iliac, sacral, presacral) and para-aortic are considered regional lymph nodes. 
+                    Any other involved nodes should be categorized as metastases (pM1) and commented on in the distant metastasis section. 
+                    Presence of isolated tumor cells no greater than 0.2 mm in regional lymph node(s) is considered N0 (i+)
+                </p>
+            </span>
+            </h2>
+            
+            <fieldset style="background-color: #daeeff;" class="lymph-nodes-block" >           
+                <select id="regional_lymph_nodes" style="padding: 4px 2px; width: 100%;">
+                    <option value="Ei ole saadetud / leitud" selected="selected">Ei ole saadetud / leitud</option>        
+                    <option value="Saadetud, täpsustatud">Saadetud, täpsustatud</option>
+                    <option value="Saadetud, täpsustamata">Saadetud, täpsustamata</option>
+                </select>
+                <div id="regional_lymph_nodes_block_specified" style="display: none;">
+                    <br>
+                    <table id="regional_lymph_nodes_specified_table"> 
+                        <tbody valign='bottom'>
+                            <tr class ="w3_heading">
+                                    <td><label for="regional_lymph_nodes_specified_name">Asukoht: </label></td>
+                                    <td><label for="regional_lymph_nodes_specified_ls">Võetud L/S (tk): </label></td>
+                                    <td><label  for="regional_lymph_nodes_specified_guardians">Nendest valvurlümfisõlmed (tk): </label></td>
+                                    <td ><label  for="regional_lymph_nodes_specified_macrometa">Nendest makrometastaasid (tk): </label>
+                                        <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Suuremad kui 2mm.</p></span>
+                                        </td>
+                                    <td><label for="regional_lymph_nodes_specified_micrometa">Nendest mikrometastaasid (tk): </label>
+                                        <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Vahemikus 0.2mm kuni 2mm ja/või rohkem kui 200 rakku.</p></span>
+                                        </td>
+                                    <td><label for="regional_lymph_nodes_specified_metasmall">Nendest isoleeritud kasvaja rakud (tk): </label>
+                                        <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Väiksemad kui 0.2mm ja vähem kui 200 rakku</p></span>
+                                        </td>
+                                    <td><label for="regional_lymph_nodes_specified_details">Täpsustus: </label></td>
+                                    <td><span></span></td>
+                            </tr>
+                            <tr>
+                                <td>Vaagna lümfisõlmed</td>
+                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_ls" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_guardians" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_macrometa" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_micrometa" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_metasmall" placeholder="0"></td>
+                                <td><input type="text" id="pelvic_lymph_nodes_details" placeholder="täpsustus"></td>
+                            </tr>
+                            <tr>
+                                <td>Paraaortaalsed lümfisõlmed</td>
+                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_ls" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_guardians" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_macrometa" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_micrometa" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_metasmall" placeholder="0"></td>
+                                <td><input type="text" id="paraaortal_lymph_nodes_details" placeholder="täpsustus"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" name="regional_lymph_nodes_specified_name" placeholder="Täpsusta" ></td>
+                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_ls" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_guardians" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_macrometa" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_micrometa" placeholder="0"></td>
+                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_metasmall" placeholder="0"></td>
+                                <td><input type="text" name="regional_lymph_nodes_specified_details" placeholder="täpsustus"></td>
+                                <td><button class="btn btn-default btn-xs remove-row">kustuta</button></td></td>
+                            </tr>              
+                        </tbody>
+                    </table>
+                    <br><br>
+                    <button class="btn btn-default btn-xs" id="regional_lymph_nodes_add_row" >
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Lisa lokalisatsioon
+                    </button>
+                    <br>
+                </div>
+                <div id="regional_lymph_nodes_block_general" style="display:none;">
+                    <br><p class ="w3_heading">Võetud täpsustamata kohast</p> <br>
+                    <table>        
+                        <tbody>
+                            <tr class ="w3_heading" style="width: 100%;">
+                                <td>
+                                    <label for="regional_lymph_nodes_general_ls">Võetud L/S (tk)</label>
+                                </td>
+                                <td>
+                                    <label for="regional_lymph_nodes_general_guardians">Nendest valvurlümfisõlmed (tk)</label>
+                                </td>
+                                <td>
+                                    <label for="regional_lymph_nodes_general_meta">Nendest metastaasid &gt; 0.2 mm (tk) VÕI</label>
+                                </td>
+                                <td>
+                                    <label for="regional_lymph_nodes_general_metasmall">Nendest isoleeritud kasvaja rakud &lt;= 0.2 mm (tk)</label>
+                                </td>
+                                <td>
+                                    <label for="regional_lymph_nodes_general_details">Täpsustus</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="only_numbers" id="regional_lymph_nodes_general_ls" placeholder="0">
+                                </td>
+                                <td>
+                                    <input type="text" class="only_numbers" id="regional_lymph_nodes_general_guardians" placeholder="0">
+                                </td>
+                                <td>
+                                    <input type="text" class="only_numbers" id="regional_lymph_nodes_general_meta" placeholder="0">
+                                </td>
+                                <td>
+                                    <input type="text" class="only_numbers" id="regional_lymph_nodes_general_metasmall" placeholder="0">
+                                </td>
+                                <td>
+                                    <input type="text" id="regional_lymph_nodes_general_details" placeholder="täpsustus">
+                                </td>
+                            </tr>     
+                        </tbody>
+                    </table>
+                </div>
+                        
+            </fieldset>
+<br><br>
+
+            <h2>Kaugmetastaasid
+                <span class="tooltip">
+                    <img src="info.png" style="width: 20px; height: 20px;" alt="i">
+                    <p class="tooltiptext">Includes metastasis to inguinal lymph nodes, intraperitoneal disease, lung, liver, or bone.
+                         It excludes metastasis to pelvic or para-aortic lymph nodes, vagina, uterine serosa, or adnexa.
+                    </p>
+                </span>
+            </h2>
+            <div>
+                <input type="checkbox" id="distal_metastases_lung" class="distal_metastases" value="Kopsus">
+                <label for="distal_metastases_lung">Kops</label><br>
+                <input type="checkbox" id="distal_metastases_liver" class="distal_metastases" value="Maksas">
+                <label for="distal_metastases_liver">Maks</label><br>
+                <input type="checkbox" id="distal_metastases_bone" class="distal_metastases" value="Luus/Luudes">
+                <label for="distal_metastases_bone">Luu</label><br>
+                <input type="checkbox" id="distal_metastases_other" class="distal_metastases" value="Mujal" onclick="cboxInput(this)">
+                <label for="distal_metastases_other">Mujal</label>
+            </div>
+
+            <br><br>
+
+            <h2>MUU INFO</h2>
+
+            <B>Lisauuringud</B><br>
+            <textarea id="extra_findings_text" rows="4" cols="50" placeholder="kirjelda vabas vormis"></textarea><br>
+
+            <b>Kommentaarid</b><br>
+            <textarea id="invasion_comments_text" rows="4" cols="50" placeholder="kirjelda vabas vormis"></textarea>
+            <br>
+            <button id="proov_btn">test</button>
+
+            <button class="btn btn-primary" id="calc_results_btn">Arvuta tulemused</button>
+
+            <span id="results_title" class="form-title" style="margin-top: 25px; display: none;">TULEMUSED</span>
+
+            <div id="results_block" style=" display: none; margin-top: 25px; font-size: 11px; background-color: rgb(255, 255, 255); border: 1px solid rgb(61, 61, 61); padding: 10px;"><br><br>
+            </div>
+            <div id="results_copy_block" style="margin-top: 25px; display: none">
+                <button class="btn btn-primary" id="copy_result_btn">Kopeeri tekst</button>
+                <br>
+                <span id="copy_result"></span>
+            </div>
+
+
+    </body>
+</html>
