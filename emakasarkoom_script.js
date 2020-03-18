@@ -356,7 +356,7 @@ $(document).ready(function (){
             } else if (T === 'T4') {
                 figo = 'IVA'
             } else if (N === 'N1') {
-                figo = 'IIIC2'
+                figo = 'IIIC'
             } else if (T === 'T3b') {
                 figo = 'IIIB'
             } else if (T === 'T3a') {
@@ -378,7 +378,7 @@ $(document).ready(function (){
             } else if (T === 'T4') {
                 figo = 'IVA'
             } else if (N === 'N1') {
-                figo = 'IIIC2'
+                figo = 'IIIC'
             } else if (T === 'T3b') {
                 figo = 'IIIB'
             } else if (T === 'T3a') {
