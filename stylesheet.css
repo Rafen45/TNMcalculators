@@ -1245,5 +1245,7 @@ h2{
     font-size: 12px;
 }
 
-
+#distance_from_o_margins_div input:not(#distance_from_other_margins_Other) {
+    width: 45px;
+}
 
