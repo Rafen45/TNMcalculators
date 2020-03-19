@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Description" content="Pathology.ee | Patoloogia infoportaal">
+    <meta name="theme-color" content="#5f6e72">
+    <meta name="csrf-param" content="_csrf">
+    <meta name="csrf-token" content="8uTYzpz9sMw1wxiwNf1fl4ziUuyKAwqmnJPWSvBfLW7Gg6CfpIvVlA33VfFFpDr766oHqvJ0Z-Cs4ZB7hD54Xg==">
+    <link href="stylesheet.css" type="text/css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>DCIS OF THE BREAST</title>
+</head>
+<body>
+    <div class="calc-form grey-form" style="max-width:800px; margin-bottom: 30px;">
+        <h1 class="form-title">DCIS OF THE BREAST</h1>
+        <h3>Tumor site</h3>
+   
+            
+        <div>
+            <input type="checkbox" name="tumor_site" id="tumor_site_Upper_outer_quadrant" value="Upper outer quadrant">
+            <label for="tumor_site_Upper_outer_quadrant" >Upper outer quadrant</label><br>
+            <input type="checkbox" name="tumor_site" id="tumor_site_Lower_outer_quadrant" value="Lower outer quadrant">
+            <label for="tumor_site_Lower_outer_quadrant" >Lower outer quadrant</label><br>
+            <input type="checkbox" name="tumor_site" id="tumor_site_Upper_inner_quadrant" value="Upper inner quadrant">
+            <label for="tumor_site_Upper_inner_quadrant" >Upper inner quadrant</label><br>
+            <input type="checkbox" name="tumor_site" id="tumor_site_Lower_inner_quadrant" value="Lower inner quadrant">
+            <label for="tumor_site_Lower_inner_quadrant" >Lower inner quadrant</label><br>
+            <input type="checkbox" name="tumor_site" id="tumor_site_Central" value="Central">
+            <label for="tumor_site_Central" >Central</label><br>
+            <input type="checkbox" name="tumor_site" id="tumor_site_Nipple" value="Nipple">
+            <label for="tumor_site_Nipple" >Nipple</label><br>
+            <div>
+                <input type="checkbox" name="tumor_site" id="tumor_site_Clock_position" value="Clock position">
+                <label for="tumor_site_Clock_position" >Clock position</label><br>
+            </div>
+            <div>
+                <input type="checkbox" name="tumor_site" id="tumor_site_Distance_from_nipple" value="Distance from nipple">
+                <label for="tumor_site_Distance_from_nipple" >Distance from nipple</label><br>
+            </div>
+            <div>
+                <input type="checkbox" name="tumor_site" id="tumor_site_Other" value="Other">
+                <label for="tumor_site_Other" >Other<br</label><br>
+            </div>
+            <input type="checkbox" name="tumor_site" id="tumor_site_Not_specified" value="Not specified">
+            <label for="tumor_site_Not_specified" >Not specified</label><br>
+        </div>
+
+        <br><br>
+
+        <div id="tumor_parameters_div">
+            <h3>Size (Extent) of DCIS <span class="tooltip"><img src="info.png" style="width: 20px;height: 20px;" alt="i" ><p class="tooltiptext"> The size (extent) of DCIS (greatest dimension using gross and microscopic evaluation) is an estimation of the volume of breast tissue occupied by DCIS.</p></span> </h3>
+            <table id="tumor_size" class="tumor_sizes">
+                <col width = "130">
+                <tbody>
+                    <tr >
+                            <td style="padding-right: 10px;"><label for="tumor_max">Estimated size (extent) of DCIS is at least </label></td>
+                            <td><label for="tumor_additional1"> + Additional dimension </label></td>
+                            <td><label for="tumor_additional2">+ Additional dimension </label></td>
+                    </tr>
+                    <tr>
+                            <td><input type="text" id="tumor_max" class="only_numbers addunits" placeholder="cm" ></td>
+                            <td><input type="text" id="tumor_additional1" class="only_numbers addunits" placeholder="cm"></td>
+                            <td><input type="text" id="tumor_additional2" class="only_numbers addunits" placeholder="cm"></td>
+                            
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <br><br>
+                            <label for="nr_blocks_w_DCIS">Number of blocks with DCIS: </label>                        
+                            <input type="text" style="width: 30px;" id="nr_blocks_w_DCIS" class="only_numbers"><br><br>
+                            <label for="nr_blocks_ex">Number of blocks examined: </label>
+                            <input type="text" style="width: 30px;" id="nr_blocks_ex" class="only_numbers">
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+
+        <br><br>
+
+        <div id="histologic_type_div">
+            <h3>Histologic Type </h3>
+            <input type="radio" name="histologic_type" id="histologic_type_Ductal_carcinoma_in_situ" value="Ductal carcinoma in situ">
+            <label type="radio" name="histologic_type" id="histologic_type_Ductal_carcinoma_in_situ">Ductal carcinoma in situ</label><br>
+            <input type="radio" name="histologic_type" id="histologic_type_Paget_disease_" value="Paget disease ">
+            <label type="radio" name="histologic_type" id="histologic_type_Paget_disease_">Paget disease </label><br>
+            <input type="radio" name="histologic_type" id="histologic_type_Encapsulated_papillary_ca" value="Encapsulated papillary carcinoma without invasive carcinoma">
+            <label type="radio" name="histologic_type" id="histologic_type_Encapsulated_papillary_ca">Encapsulated papillary carcinoma without invasive carcinoma</label><br>
+            <input type="radio" name="histologic_type" id="histologic_type_Solid_papillary_ca" value="Solid papillary carcinoma without invasive carcinoma">
+            <label type="radio" name="histologic_type" id="histologic_type_Solid_papillary_ca">Solid papillary carcinoma without invasive carcinoma</label><br>
+        </div>
+
+        <br><br>
+
+        <div id="architectural_patterns_div">
+            <h3>Architectural Patterns</h3>
+            <input type="checkbox" id="architectural_pattern_Comedo" value="Comedo ">
+            <label for="architectural_pattern_Comedo">Comedo </label><br>
+            <input type="checkbox" id="architectural_pattern_Paget_disease" value="Paget disease (DCIS involving nipple skin)">
+            <label for="architectural_pattern_Paget_disease">Paget disease (DCIS involving nipple skin)</label><br>
+            <input type="checkbox" id="architectural_pattern_Cribriform" value="Cribriform">
+            <label for="architectural_pattern_Cribriform">Cribriform</label><br>
+            <input type="checkbox" id="architectural_pattern_Micropapillary" value="Micropapillary">
+            <label for="architectural_pattern_Micropapillary">Micropapillary</label><br>
+            <input type="checkbox" id="architectural_pattern_Papillary" value="Papillary">
+            <label for="architectural_pattern_Papillary">Papillary</label><br>
+            <input type="checkbox" id="architectural_pattern_Solid" value="Solid">
+            <label for="architectural_pattern_Solid">Solid</label><br>
+            <div>
+                <input type="checkbox" id="architectural_pattern_Other" value="Other">
+                <label for="architectural_pattern_Other">Other</label><br>
+            </div>
+        </div>
+
+        <div id="nuclear_grade_div">
+            <h3>Nuclear Grade</h3>
+            <input type="radio" name="nuclear_grade" id="nuclear_grade_I" value="Grade I">
+            <label for="nuclear_grade_I">Grade I</label><br>
+            <input type="radio" name="nuclear_grade" id="nuclear_grade_II" value="Grade II">
+            <label for="nuclear_grade_II">Grade II</label><br>
+            <input type="radio" name="nuclear_grade" id="nuclear_grade_III" value="Grade III">
+            <label for="nuclear_grade_III">Grade III</label><br>
+            <br>
+            <input type="checkbox" id="show_nuclear_grade_info_table">
+            <label for="show_nuclear_grade_info_table">Show grading table</label> <br>
+            <br>
+            <div id="nuclear_grade_info_table" style="display: none;">
+                <table border="1" cellspacing="0" cellpadding="0" width="669">
+                    <tbody>
+                        <tr>
+                            <td width="109" valign="top">
+                                <p>
+                                    <strong>
+                                        <br/>
+                                        Feature
+                                    </strong>
+                                </p>
+                            </td>
+                            <td width="239" valign="top">
+                                <p>
+                                    <strong>
+                                        Grade I
+                                        <br/>
+                                        (Low)
+                                    </strong>
+                                </p>
+                            </td>
+                            <td width="107" valign="top">
+                                <p>
+                                    <strong>Grade II (Intermediate)</strong>
+                                </p>
+                            </td>
+                            <td width="215" valign="top">
+                                <p>
+                                    <strong>
+                                        Grade III
+                                        <br/>
+                                        (High)
+                                    </strong>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="109" valign="top">
+                                <p>
+                                    Pleomorphism
+                                </p>
+                            </td>
+                            <td width="239" valign="top">
+                                <p>
+                                    Monotonous (monomorphic)
+                                </p>
+                            </td>
+                            <td width="107" valign="top">
+                                <p>
+                                    Intermediate
+                                </p>
+                            </td>
+                            <td width="215" valign="top">
+                                <p>
+                                    Markedly pleomorphic
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="109" valign="top">
+                                <p>
+                                    Size
+                                </p>
+                            </td>
+                            <td width="239" valign="top">
+                                <p>
+                                    1.5 to 2 x the size of a normal RBC or a normal duct
+                                    epithelial cell nucleus
+                                </p>
+                            </td>
+                            <td width="107" valign="top">
+                                <p>
+                                    Intermediate
+                                </p>
+                            </td>
+                            <td width="215" valign="top">
+                                <p>
+                                    &gt;2.5 x the size of a normal RBC or a normal duct
+                                    epithelial cell nucleus
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="109" valign="top">
+                                <p>
+                                    Chromatin
+                                </p>
+                            </td>
+                            <td width="239" valign="top">
+                                <p>
+                                    Usually diffuse, finely dispersed chromatin
+                                </p>
+                            </td>
+                            <td width="107" valign="top">
+                                <p>
+                                    Intermediate
+                                </p>
+                            </td>
+                            <td width="215" valign="top">
+                                <p>
+                                    Usually vesicular with irregular chromatin distribution
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="109" valign="top">
+                                <p>
+                                    Nucleoli
+                                </p>
+                            </td>
+                            <td width="239" valign="top">
+                                <p>
+                                    Only occasional
+                                </p>
+                            </td>
+                            <td width="107" valign="top">
+                            </td>
+                            <td width="215" valign="top">
+                                <p>
+                                    Prominent, often multiple
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="109" valign="top">
+                                <p>
+                                    Mitoses
+                                </p>
+                            </td>
+                            <td width="239" valign="top">
+                                <p>
+                                    Only occasional
+                                </p>
+                            </td>
+                            <td width="107" valign="top">
+                                <p>
+                                    Intermediate
+                                </p>
+                            </td>
+                            <td width="215" valign="top">
+                                <p>
+                                    May be frequent
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="109" valign="top">
+                                <p>
+                                    Orientation
+                                </p>
+                            </td>
+                            <td width="239" valign="top">
+                                <p>
+                                    Polarized toward luminal spaces
+                                </p>
+                            </td>
+                            <td width="107" valign="top">
+                                <p>
+                                    Intermediate
+                                </p>
+                            </td>
+                            <td width="215" valign="top">
+                                <p>
+                                    Usually not polarized toward the luminal space
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="necrosis_div">
+            <h3>Necrosis</h3>
+            <input type="radio" name="necrosis_radio" id="necrosis_NA" value="Not identified">
+            <label for="necrosis_NA">Not identified</label><br>
+            <input type="radio" name="necrosis_radio" id="necrosis_present_focal" value="Present, focal (small foci or single cell necrosis)">
+            <label for="necrosis_present_focal">Present, focal (small foci or single cell necrosis)</label><br>
+            <input type="radio" name="necrosis_radio" id="necrosis_present_central" value="Present, central (expansive “comedo” necrosis)">
+            <label for="necrosis_present_central">Present, central (expansive “comedo” necrosis)</label><br>
+        </div>
+
+        <br><br>
+
+        <div id="margins_div">
+            <h3>Margins</h3>
+            <input type="radio" name="margins_radio" id="margins_CA" value="Cannot be assessed">
+            <label for="">Cannot be assessed</label><br>
+            <input type="radio" name="margins_radio" id="margins_uninvolved" value="Uninvolved by DCIS">
+            <label for="">Uninvolved by DCIS</label><br>
+            <div id="margins_uninvolved_div" style="padding-left: 40px; display: none;">
+               <h4>Distance from closest margin</h4>
+                <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_spec" value="Specify " >
+                <label for="margins_uninvolved_spec">Specify </label><br>
+                <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_lt" value="Less than" >
+                <label for="margins_uninvolved_lt">Less than</label><br>
+                <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_gt" value="Greater than " >
+                <label for="margins_uninvolved_gt">Greater than </label><br>
+                <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_CD" value="Cannot be determined" >
+                <label for="margins_uninvolved_CD">Cannot be determined</label><br>
+                <br>
+                <div id="specify_closest_margin_div">
+                    <label for="specify_closest_margin" class="specify_closest_m">Specify closest margin(s) (required only if &lt;2mm):</label>
+                    <input type="text" class="specify_closest_m" id="specify_closest_margin" placeholder="Margin name"> <br>
+                </div>
+                <input type="checkbox" class="specify_closest_m" id="specify_closest_margin_CA"><label for="">Closest margin cannot be determined</label>
+                <div style="line-height: 25px; " id="distance_from_o_margins_div">
+                    <h3>Distance from other margins</h3>
+                    <label  for="distance_from_other_margins_Anterior">Anterior:</label> 
+                    <input type="text" id="distance_from_other_margins_Anterior" class="only_numbers addunits" placeholder="mm"  ><br>
+                    <label  for="distance_from_other_margins_Posterior">Posterior:</label> 
+                    <input type="text" id="distance_from_other_margins_Posterior" class="only_numbers addunits" placeholder="mm"  ><br>
+                    <label  for="distance_from_other_margins_Superior">Superior:</label> 
+                    <input type="text" id="distance_from_other_margins_Superior" class="only_numbers addunits" placeholder="mm"  ><br>
+                    <label  for="distance_from_other_margins_Inferior">Inferior:</label> 
+                    <input type="text" id="distance_from_other_margins_Inferior" class="only_numbers addunits" placeholder="mm"  ><br>
+                    <label  for="distance_from_other_margins_Medial">Medial:</label> 
+                    <input type="text" id="distance_from_other_margins_Medial" class="only_numbers addunits" placeholder="mm"  ><br>
+                    <label  for="distance_from_other_margins_Lateral">Lateral:</label> 
+                    <input type="text" id="distance_from_other_margins_Lateral" class="only_numbers addunits" placeholder="mm"  ><br>
+                    <label for="distance_from_other_margins_Other">Other:</label> 
+                    <input type="text" id="distance_from_other_margins_Other" placeholder="Specify margin"><br>
+                </div>
+            </div>
+            <input type="radio" name="margins_radio" id="margins_positive" value="Positive for DCIS (select all that apply):">
+            <label for="">Positive for DCIS (select all that apply):</label><br>
+            <div id="margins_positive_div" style="padding-left: 40px; display: none;">
+                <br>
+                <input type="checkbox" id="margins_positive_Anterior" value="Anterior"> 
+                <label for="margins_positive_Anterior">Anterior</label> <br>
+                <input type="checkbox" id="margins_positive_Posterior" value="Posterior"> 
+                <label for="margins_positive_Posterior">Posterior</label> <br>
+                <input type="checkbox" id="margins_positive_Superior" value="Superior"> 
+                <label for="margins_positive_Superior">Superior</label> <br>
+                <input type="checkbox" id="margins_positive_Inferior" value="Inferior"> 
+                <label for="margins_positive_Inferior">Inferior</label> <br>
+                <input type="checkbox" id="margins_positive_Medial" value="Medial"> 
+                <label for="margins_positive_Medial">Medial</label> <br>
+                <input type="checkbox" id="margins_positive_Lateral" value="Lateral"> 
+                <label for="margins_positive_Lateral">Lateral</label> <br>
+                <input type="checkbox" id="margins_positive_Other" value="Other"> 
+                <label for="margins_positive_Other">Other</label> <br>
+
+            </div>
+
+
+        </div>
+
+</body>
+<footer>
+    <script src="DCIS_script.js"></script>
+</footer>
+</html>
