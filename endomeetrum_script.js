@@ -84,6 +84,7 @@
         input.value = str
     }
 
+    //check [j < "X"] where X corresponds to how many columns you want to have included. otherwise use nrOfCells instead of X
     function sumtable(lymphdiv, heading, txtBeforeSum) {
         totals = []
         var str = []
@@ -92,16 +93,24 @@
         var nrOfRows = table.rows.length;
         var nrOfCells = table.rows[0].cells.length
         for (var i = 1; i < nrOfRows; i++) {
-            for (var j = 0; j < nrOfCells ; j++) {
-                var colValue = table.rows[i].cells[j].firstChild.value;
-                if (!isNaN(colValue) && colValue) {
-                    if (isNaN(totals[j])){totals.push(0)}
-                    totals[j]+=parseFloat(colValue)
-                    str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
-                } else {
-                    totals[j] = null
-                    str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
-                }
+            for (var j = 0; j < 7 ; j++) {
+                if (isNaN(totals[j])){
+                    totals.push(0)}
+                try {
+                    var child = table.rows[i].cells[j].firstChild
+                    if (child.value) {          
+                        var colValue = child.value
+                        if (!isNaN(colValue)) {
+                            totals[j]+=parseFloat(colValue)
+                        }
+                        str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
+                    } else if (child.innerHTML) {
+                        var colValue = child.innerHTML
+                        str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
+                    } 
+                } catch {
+                    continue
+                }  
             }
             if (str[1] != null){
                 ans.push(str.join(", ") + "<br/>");
@@ -113,7 +122,7 @@
         } else {
             $('#results_block').append(heading + "<br/>" + ans.join("") + txtBeforeSum + "<br/>")
             for (var i = 0; i < totals.length; i++) {
-                if (totals[i] === null) {
+                if (totals[i] === 0) {
                     continue
                 } else {
                     str.push(table.rows[0].cells[i].firstChild.textContent + totals[i] + "<br/>")
@@ -337,19 +346,19 @@ $(document).ready(function(){
     function calcGradeN() {
         if ($('#regional_lymph_nodes').val() == 'Ei ole saadetud / leitud') {
             return 'NX';
-        } else if ($("#paraaortal_lymph_nodes_macrometa").val() > 0) {
+        } else if ($("#paraaortal_lymph_nodes_macrometa :visible").val() > 0) {
             return 'N2a'
-        } else if ($("#paraaortal_lymph_nodes_micrometa").val() > 0) {
+        } else if ($("#paraaortal_lymph_nodes_micrometa :visible").val() > 0) {
             return 'N2mi'
-        } else if ($("#paraaortal_lymph_nodes_ls").val() > 0) {
+        } else if ($("#paraaortal_lymph_nodes_ls :visible").val() > 0) {
             return 'N2'
-        } else if ($("#pelvic_lymph_nodes_macrometa").val() > 0) {
+        } else if ($("#pelvic_lymph_nodes_macrometa :visible").val() > 0) {
             return 'N1a'
-        } else if ($("#pelvic_lymph_nodes_micrometa").val() > 0) {
+        } else if ($("#pelvic_lymph_nodes_micrometa :visible").val() > 0) {
             return 'N1mi'
-        } else if ($("#pelvic_lymph_nodes_ls").val() > 0) {
+        } else if ($("#pelvic_lymph_nodes_ls :visible").val() > 0) {
             return 'N1'         
-        } else if ($("input[name*=_metasmall]").val() > 0) {
+        } else if ($("input[name*=_metasmall]:visible").val() > 0) {
             return 'N0(i+)'
         } else {
             return 'N0';
@@ -425,7 +434,7 @@ $(document).ready(function(){
         addGenericRadioB("lymphovascular_invasion", "Lümfovaskulaarne invasioon: ", "Täpsustus: ")
         addGenericRadioB("ascitic_Fluid", "Peritoneaalvedelik: ", "Täpsustus: ")
         addCheckbox("distal_metastases", "Kaugmetastaasid: ")
-        $('#results_block').append(sumtable("regional_lymph_nodes_specified_table", "Lümfisõlmed: ", "Kokku: "))
+        $('#results_block').append(sumtable("#lymph_nodes_tables", "Lümfisõlmed: ", "Kokku: "))
         $('#results_block').append('TNM Klassifikatsioon: ' + calcGradeT() + calcGradeN() + calcGradeM() + '<br/>');
         $('#results_block').append(calcFigo(calcGradeT(), calcGradeN(), calcGradeM()) + '<br/>');
         addExtraFindingsText();

@@ -458,104 +458,92 @@
                     <option value="Saadetud, täpsustatud">Saadetud, täpsustatud</option>
                     <option value="Saadetud, täpsustamata">Saadetud, täpsustamata</option>
                 </select>
-                <div id="regional_lymph_nodes_block_specified" style="display: none;">
-                    <br>
-                    <table id="regional_lymph_nodes_specified_table"> 
-                        <tbody valign='bottom'>
-                            <tr class ="w3_heading">
-                                    <td><label for="regional_lymph_nodes_specified_name">Asukoht: </label></td>
-                                    <td><label for="regional_lymph_nodes_specified_ls">Võetud L/S (tk): </label></td>
-                                    <td><label  for="regional_lymph_nodes_specified_guardians">Nendest valvurlümfisõlmed (tk): </label></td>
-                                    <td ><label  for="regional_lymph_nodes_specified_macrometa">Nendest makrometastaasid (tk): </label>
-                                        <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Suuremad kui 2mm.</p></span>
-                                        </td>
-                                    <td><label for="regional_lymph_nodes_specified_micrometa">Nendest mikrometastaasid (tk): </label>
-                                        <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Vahemikus 0.2mm kuni 2mm ja/või rohkem kui 200 rakku.</p></span>
-                                        </td>
-                                    <td><label for="regional_lymph_nodes_specified_metasmall">Nendest isoleeritud kasvaja rakud (tk): </label>
-                                        <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Väiksemad kui 0.2mm ja vähem kui 200 rakku</p></span>
-                                        </td>
-                                    <td><label for="regional_lymph_nodes_specified_details">Täpsustus: </label></td>
-                                    <td><span></span></td>
-                            </tr>
-                            <tr>
-                                <td>Vaagna lümfisõlmed</td>
-                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_ls" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_guardians" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_macrometa" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_micrometa" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_metasmall" placeholder="0"></td>
-                                <td><input type="text" id="pelvic_lymph_nodes_details" placeholder="täpsustus"></td>
-                            </tr>
-                            <tr>
-                                <td>Paraaortaalsed lümfisõlmed</td>
-                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_ls" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_guardians" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_macrometa" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_micrometa" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_metasmall" placeholder="0"></td>
-                                <td><input type="text" id="paraaortal_lymph_nodes_details" placeholder="täpsustus"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="text" name="regional_lymph_nodes_specified_name" placeholder="Täpsusta" ></td>
-                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_ls" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_guardians" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_macrometa" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_micrometa" placeholder="0"></td>
-                                <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_metasmall" placeholder="0"></td>
-                                <td><input type="text" name="regional_lymph_nodes_specified_details" placeholder="täpsustus"></td>
-                                <td><button class="btn btn-default btn-xs remove-row">kustuta</button></td></td>
-                            </tr>              
-                        </tbody>
-                    </table>
-                    <br><br>
-                    <button class="btn btn-default btn-xs" id="regional_lymph_nodes_add_row" >
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Lisa lokalisatsioon
-                    </button>
-                    <br>
+                <div id="lymph_nodes_tables">
+                    <div id="regional_lymph_nodes_block_specified" style="display: none;">
+                        <table id="regional_lymph_nodes_specified_table"> 
+                            <tbody valign='bottom'>
+                                <tr class ="w3_heading">
+                                        <td><label for="regional_lymph_nodes_specified_name">Asukoht: </label></td>
+                                        <td><label for="regional_lymph_nodes_specified_ls">Võetud L/S (tk): </label></td>
+                                        <td><label  for="regional_lymph_nodes_specified_guardians">Nendest valvurlümfisõlmed (tk): </label></td>
+                                        <td ><label  for="regional_lymph_nodes_specified_macrometa">Nendest makrometastaasid (tk): </label>
+                                            <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Suuremad kui 2mm.</p></span>
+                                            </td>
+                                        <td><label for="regional_lymph_nodes_specified_micrometa">Nendest mikrometastaasid (tk): </label>
+                                            <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Vahemikus 0.2mm kuni 2mm ja/või rohkem kui 200 rakku.</p></span>
+                                            </td>
+                                        <td><label for="regional_lymph_nodes_specified_metasmall">Nendest isoleeritud kasvaja rakud (tk): </label>
+                                            <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Väiksemad kui 0.2mm ja vähem kui 200 rakku</p></span>
+                                            </td>
+                                        <td><label for="regional_lymph_nodes_specified_details">Täpsustus: </label></td>
+                                        <td><span></span></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Vaagna lümfisõlmed</p></td>
+                                    <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_guardians" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_macrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_micrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="pelvic_lymph_nodes_metasmall" placeholder="0"></td>
+                                    <td><input type="text" id="pelvic_lymph_nodes_details" placeholder="täpsustus"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Paraaortaalsed lümfisõlmed</p></td>
+                                    <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_guardians" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_macrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_micrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="paraaortal_lymph_nodes_metasmall" placeholder="0"></td>
+                                    <td><input type="text" id="paraaortal_lymph_nodes_details" placeholder="täpsustus"></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" name="regional_lymph_nodes_specified_name" placeholder="Täpsusta" ></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_guardians" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_macrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_micrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_metasmall" placeholder="0"></td>
+                                    <td><input type="text" name="regional_lymph_nodes_specified_details" placeholder="täpsustus"></td>
+                                    <td><button class="btn btn-default btn-xs remove-row">kustuta</button></td></td>
+                                </tr>              
+                            </tbody>
+                        </table>
+                        <br><br>
+                        <button class="btn btn-default btn-xs" id="regional_lymph_nodes_add_row" >
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Lisa lokalisatsioon
+                        </button>
+                        <br>
+                    </div>
+                    <div id="regional_lymph_nodes_block_general" style="display:none;">
+                        <br><p class ="w3_heading">Võetud täpsustamata kohast</p> <br>
+                        <table id="regional_lymph_nodes_general_table">        
+                            <tbody>
+                                <tr class ="w3_heading" style="width: 100%;">
+                                        <td><label for="regional_lymph_nodes_general_ls">Võetud L/S (tk): </label></td>
+                                        <td><label for="regional_lymph_nodes_general_guardians">Nendest valvurlümfisõlmed (tk): </label></td>
+                                        <td><label  for="regional_lymph_nodes_general_macrometa">Nendest makrometastaasid (tk): </label>
+                                            <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Suuremad kui 2mm.</p></span>
+                                            </td>
+                                        <td><label for="regional_lymph_nodes_general_micrometa">Nendest mikrometastaasid (tk): </label>
+                                            <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Vahemikus 0.2mm kuni 2mm ja/või rohkem kui 200 rakku.</p></span>
+                                            </td>
+                                        <td><label for="regional_lymph_nodes_general_metasmall">Nendest isoleeritud kasvaja rakud (tk): </label>
+                                            <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Väiksemad kui 0.2mm ja vähem kui 200 rakku</p></span>
+                                            </td>
+                                        <td><label for="regional_lymph_nodes_general_details">Täpsustus: </label></td>                                    
+                                </tr>
+                                <tr>                                    
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_general_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_general_guardians" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_general_macrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_general_micrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_general_metasmall" placeholder="0"></td>
+                                    <td><input type="text" id="regional_lymph_nodes_general_details" placeholder="täpsustus"></td>                                    
+                                </tr>     
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div id="regional_lymph_nodes_block_general" style="display:none;">
-                    <br><p class ="w3_heading">Võetud täpsustamata kohast</p> <br>
-                    <table>        
-                        <tbody>
-                            <tr class ="w3_heading" style="width: 100%;">
-                                <td>
-                                    <label for="regional_lymph_nodes_general_ls">Võetud L/S (tk)</label>
-                                </td>
-                                <td>
-                                    <label for="regional_lymph_nodes_general_guardians">Nendest valvurlümfisõlmed (tk)</label>
-                                </td>
-                                <td>
-                                    <label for="regional_lymph_nodes_general_meta">Nendest metastaasid &gt; 0.2 mm (tk) VÕI</label>
-                                </td>
-                                <td>
-                                    <label for="regional_lymph_nodes_general_metasmall">Nendest isoleeritud kasvaja rakud &lt;= 0.2 mm (tk)</label>
-                                </td>
-                                <td>
-                                    <label for="regional_lymph_nodes_general_details">Täpsustus</label>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="text" class="only_numbers" id="regional_lymph_nodes_general_ls" placeholder="0">
-                                </td>
-                                <td>
-                                    <input type="text" class="only_numbers" id="regional_lymph_nodes_general_guardians" placeholder="0">
-                                </td>
-                                <td>
-                                    <input type="text" class="only_numbers" id="regional_lymph_nodes_general_meta" placeholder="0">
-                                </td>
-                                <td>
-                                    <input type="text" class="only_numbers" id="regional_lymph_nodes_general_metasmall" placeholder="0">
-                                </td>
-                                <td>
-                                    <input type="text" id="regional_lymph_nodes_general_details" placeholder="täpsustus">
-                                </td>
-                            </tr>     
-                        </tbody>
-                    </table>
-                </div>
-                        
             </fieldset>
 <br><br>
 

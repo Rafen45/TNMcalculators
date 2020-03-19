@@ -86,6 +86,7 @@ function replacetext(input) {
     input.value = str
 }
 
+//check [j < "X"] where X corresponds to how many columns you want to have included. otherwise use nrOfCells instead of X
 function sumtable(lymphdiv, heading, txtBeforeSum) {
     totals = []
     var str = []
@@ -94,16 +95,24 @@ function sumtable(lymphdiv, heading, txtBeforeSum) {
     var nrOfRows = table.rows.length;
     var nrOfCells = table.rows[0].cells.length
     for (var i = 1; i < nrOfRows; i++) {
-        for (var j = 0; j < nrOfCells ; j++) {
-            var colValue = table.rows[i].cells[j].firstChild.value;
-            if (!isNaN(colValue) && colValue) {
-                if (isNaN(totals[j])){totals.push(0)}
-                totals[j]+=parseFloat(colValue)
-                str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
-            } else {
-                totals[j] = null
-                str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
-            }
+        for (var j = 0; j < 7 ; j++) {
+            if (isNaN(totals[j])){
+                totals.push(0)}
+            try {
+                var child = table.rows[i].cells[j].firstChild
+                if (child.value) {          
+                    var colValue = child.value
+                    if (!isNaN(colValue)) {
+                        totals[j]+=parseFloat(colValue)
+                    }
+                    str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
+                } else if (child.innerHTML) {
+                    var colValue = child.innerHTML
+                    str.push(table.rows[0].cells[j].firstChild.textContent + colValue)
+                } 
+            } catch {
+                continue
+            }  
         }
         if (str[1] != null){
             ans.push(str.join(", ") + "<br/>");
@@ -115,7 +124,7 @@ function sumtable(lymphdiv, heading, txtBeforeSum) {
     } else {
         $('#results_block').append(heading + "<br/>" + ans.join("") + txtBeforeSum + "<br/>")
         for (var i = 0; i < totals.length; i++) {
-            if (totals[i] === null) {
+            if (totals[i] === 0) {
                 continue
             } else {
                 str.push(table.rows[0].cells[i].firstChild.textContent + totals[i] + "<br/>")
