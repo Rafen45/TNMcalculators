@@ -1058,7 +1058,7 @@ i {
     top: -1px;
 }
 
-.lymph-nodes-block input {
+.lymph-nodes-block tbody input {
     width: 90%;
 }
 
@@ -1240,12 +1240,12 @@ h2{
     width: 15px;
 }
 
-.w3_heading{
+.w3_heading th{
     font-weight: bold;
     font-size: 12px;
+    text-align: left;
 }
 
-#distance_from_o_margins_div input:not(#distance_from_other_margins_Other) {
+.only_numbers {
     width: 45px;
 }
-
