@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" content="Pathology.ee | Patoloogia infoportaal">
+        <meta name="theme-color" content="#5f6e72">
+        <meta name="csrf-param" content="_csrf">
+        <meta name="csrf-token" content="8uTYzpz9sMw1wxiwNf1fl4ziUuyKAwqmnJPWSvBfLW7Gg6CfpIvVlA33VfFFpDr766oHqvJ0Z-Cs4ZB7hD54Xg==">
+        <link href="stylesheet.css" type="text/css" rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>Invasive breast tumor</title>
+        </head>
+    <body>
+        <div class="calc-form grey-form" style="max-width:800px; margin-bottom: 30px;">
+            <h1 class="form-title">Invasive breast tumor</h1>
+            <div>
+                <h3>Tumor site</h3>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Upper_outer_quadrant" value="Upper outer quadrant">
+                <label for="tumor_site_Upper_outer_quadrant" >Upper outer quadrant</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Lower_outer_quadrant" value="Lower outer quadrant">
+                <label for="tumor_site_Lower_outer_quadrant" >Lower outer quadrant</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Upper_inner_quadrant" value="Upper inner quadrant">
+                <label for="tumor_site_Upper_inner_quadrant" >Upper inner quadrant</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Lower_inner_quadrant" value="Lower inner quadrant">
+                <label for="tumor_site_Lower_inner_quadrant" >Lower inner quadrant</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Central" value="Central">
+                <label for="tumor_site_Central" >Central</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Nipple" value="Nipple">
+                <label for="tumor_site_Nipple" >Nipple</label><br>
+                <div>
+                    <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Clock_position" value="Clock position">
+                    <label for="tumor_site_Clock_position" >Clock position</label><br>
+                </div>
+                <div>
+                    <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Distance_from_nipple" value="Distance from nipple">
+                    <label for="tumor_site_Distance_from_nipple" >Distance from nipple</label><br>
+                </div>
+                <div>
+                    <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Other" value="Other">
+                    <label for="tumor_site_Other" >Other<br</label><br>
+                </div>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Not_specified" value="Not specified">
+                <label for="tumor_site_Not_specified" >Not specified</label><br>
+            </div>
+
+            <br><br>
+
+            <div id="tumor_parameters_div">
+                <h3>Tumor Size</h3>
+                <input type="radio" name="tumor_size" id="tumor_size_microinvasive" value="Microinvasion only (≤1 mm)">
+                <label for="tumor_size_microinvasive"></label>Microinvasion only (≤1 mm)<br>
+                <input type="radio" name="tumor_size" id="tumor_size_greatest_dim">
+                <label for="tumor_size_greatest_dim">Greatest dimension of largest invasive focus >1 mm (specify exact measurement) </label><br>
+                <div id="tumor_size_table_div" style="display: none; padding: 30px;">
+                    <table  class="tumor_sizes" >
+                        <col width = "130">
+                        <tbody>
+                            <tr >
+                                <td style="padding-right: 10px;"><label for="tumor_max">Estimated size (extent) of DCIS is at least </label></td>
+                                <td><label for="tumor_additional1">Additional dimension </label></td>
+                                <td><label for="tumor_additional2">Additional dimension </label></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="tumor_max" class="only_numbers addunits" placeholder="mm" ></td>
+                                <td><input type="text" id="tumor_additional1" class="only_numbers addunits" placeholder="mm"></td>
+                                <td><input type="text" id="tumor_additional2" class="only_numbers addunits" placeholder="mm"></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="radio" name="tumor_size" id="tumor_size_no_residual" value="No residual invasive carcinoma ">
+                <label for="tumor_size_no_residual"></label>No residual invasive carcinoma <br>
+                <input type="radio" name="tumor_size" id="tumor_size_CD" value="Size of largest invasive focus cannot be determined">
+                <label for="tumor_size_CD"></label>Size of largest invasive focus cannot be determined<br>
+            </div>
+
+            <br><br>
+
+            <div id="histologic_type_div">
+                <h3>Histologic Type <span class="tooltip">
+                    <img src="info.png" style="width: 18px;height: 18px; " alt="i">
+                    <p class="tooltiptext">Determination of histologic type is based on routine histologic examination; special stains such as e-cadherin are not required for determining histologic type. The histologic type corresponds to the <b>largest carcinoma</b>. If there are smaller carcinomas of a different type, this information should be included under “Additional Pathologic Findings.”<br>
+                    <b style="font-size: larger;">NB!</b> Special type carcinomas should consist of at least 90% pure pattern.</p>
+                </span></h3>
+                <select id="histologic_type">
+                    <option value="No residual invasive carcinoma" selected>No residual invasive carcinoma</option>
+                    <option>Invasive carcinoma of no special type (ductal) </option>
+                    <option>Micro-invasive carcinoma</option>
+                    <option>Invasive lobular carcinoma</option>
+                    <option>Invasive carcinoma with mixed ductal and lobular features</option>
+                    <option>Invasive carcinoma with features of (specify): </option>
+                    <option>Tubular carcinoma</option>
+                    <option>Invasive cribriform carcinoma</option>
+                    <option>Mucinous carcinoma</option>
+                    <option>Invasive micropapillary carcinoma</option>
+                    <option>Apocrine adenocarcinoma</option>
+                    <option>Metaplastic carcinoma</option>
+                    <option>Encapsulated papillary carcinoma with invasion</option>
+                    <option>Solid papillary carcinoma with invasion</option>
+                    <option>Intraductal papillary adenocarcinoma with invasion</option>
+                    <option>Adenoid cystic carcinoma</option>
+                    <option>Neuroendocrine tumor</option>
+                    <option>Neuroendocrine carcinoma</option>
+                    <option>Invasive carcinoma, type cannot be determined</option>
+                    <option>Other histologic type</option>
+                </select>
+                <div  id="histotype_other_div" style="display: none; padding: 30px;">
+                    <select id="histotype_other" >
+                        <option>Invasive papillary carcinoma</option>
+                        <option>Oncocytic carcinoma</option>
+                        <option>Lipid-rich carcinoma</option>
+                        <option>Glycogen-rich carcinoma</option>
+                        <option>Sebaceous carcinoma</option>
+                        <option>Mucinous cystadenocarcinoma NOS</option>
+                        <option>Acinar cell carcinoma</option>
+                        <option>Classic adenoid cystic carcinoma</option>
+                        <option>Solid-basaloid adenoid cystic carcinoma</option>
+                        <option>Adenoid cystic carcinoma with high-grade transformation</option>
+                        <option>Secretory carcinoma</option>
+                        <option>Mucoepidermoid carcinoma</option>
+                        <option>Polymorphous adenocarcinoma</option>
+                        <option>Tall cell carcinoma with reversed polarity</option>
+                        <option>Adenomyoepithelioma with carcinoma</option>
+                        <option>Epithelial-myoepithelial carcinoma</option>
+                        <option>Other type not listed (specify)</option>
+    
+                    </select>
+                </div>
+                <div id="histotype_text_div" style="display: none; padding: 15px;">
+                    <textarea id="histotype_text" rows="4" cols="50" placeholder="specify"></textarea>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div id="glandular_diferentiation_div">
+                <h3>Glandular (Acinar)/Tubular Differentiation</h3>
+                <p style="font-weight: bold;">
+                    <input type="radio" name="glandular_dif" id="glandular_dif_score1" value="&gt;75% of tumor area forming glandular/tubular structures)">
+                    <label for="">&gt;75% of tumor area forming glandular/tubular structures</label> <br>
+                    <input type="radio" name="glandular_dif" id="glandular_dif_score2" value="10% to 75% of tumor area forming glandular/tubular structures)">
+                    <label for="">10% to 75% of tumor area forming glandular/tubular structures</label> <br>
+                    <input type="radio" name="glandular_dif" id="glandular_dif_score3" value="&lt;10% of tumor area forming glandular/tubular structures)">
+                    <label for="">&lt;10% of tumor area forming glandular/tubular structures</label> <br>
+                </p>
+                <input type="radio" name="glandular_dif" id="glandular_dif_micro" value="Only microinvasion present (not graded)">
+                <label for="">Only microinvasion present (not graded)</label> <br>
+                <input type="radio" name="glandular_dif" id="glandular_dif_no_residue" value="No residual invasive carcinoma">
+                <label for="">No residual invasive carcinoma</label> <br>
+                <input type="radio" name="glandular_dif" id="glandular_dif_CD" value="Score cannot be determined">
+                <label for="">Score cannot be determined</label> <br>
+
+            </div>
+
+            <br><br>
+
+            <div id="nuclear_pleomorphism_div">
+                <h3>Nuclear Pleomorphism</h3>
+                <p style="font-weight: bold;">
+                    <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_score1" value="Nuclei small with little increase in size in comparison with normal breast epithelial cells, regular outlines, uniform nuclear chromatin, little variation in size">
+                    <label for="nuclear_pleomorphism_radio_score1">nuclei small with little increase in size in comparison with normal breast epithelial cells, regular outlines, uniform nuclear chromatin, little variation in size</label><br>
+                    <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_score2" value="Cells larger than normal with open vesicular nuclei, visible nucleoli, and moderate variability in both size and shape">
+                    <label for="nuclear_pleomorphism_radio_score2">cells larger than normal with open vesicular nuclei, visible nucleoli, and moderate variability in both size and shape</label><br>
+                    <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_score3" value="Vesicular nuclei, often with prominent nucleoli, exhibiting marked variation in size and shape, occasionally with very large and bizarre forms">
+                    <label for="nuclear_pleomorphism_radio_score3">vesicular nuclei, often with prominent nucleoli, exhibiting marked variation in size and shape, occasionally with very large and bizarre forms</label><br>
+                </p>
+                <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_micro" value="Only microinvasion present (not graded)">
+                <label for="nuclear_pleomorphism_radio_micro">Only microinvasion present (not graded)</label><br>
+                <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_no_residue" value="No residual invasive carcinoma">
+                <label for="nuclear_pleomorphism_radio_no_residue">No residual invasive carcinoma</label><br>
+                <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_CD" value="Score cannot be determined">
+                <label for="nuclear_pleomorphism_radio_CD">Score cannot be determined</label><br>
+            </div>
+
+            <br><br>
+
+            <div id="mitotic_rate_div">
+                <h3>Mitotic Rate</h3>
+                    <input type="radio" name="mitotic_rate_radio" id="mitotic_rate_radio_present">
+                    <label for="mitotic_rate_radio_present">Mitotic rate can be determined</label><br>
+                    <div id="mitotic_rate_info_div" style="display: none;">
+                        <label for="n_mitoses">Number of mitoses per 10 fields </label>
+                        <input type="text" class="only_numbers" id="n_mitoses"><br>
+                        <div id="calculator_div" class="hidden_calc" style="display: none; padding: 10px 0px 10px">
+                                <p><b>Field with known diameter</b></p>
+                                <label for="eyepiece_magnification">Eyepiece Magnification</label>
+                                <input type="text" class="only_numbers" id="eyepiece_magnification" placeholder="X">
+                                <label for="objective_magnification">Objective Magnification</label>
+                                <input type="text" class="only_numbers" id="objective_magnification" placeholder="X">
+                                <label for="known_microfield_D">Known Field Diameter</label>
+                                <input type="text" class="only_numbers" id="known_microfield_D" placeholder="mm"><br>
+                            </div>
+                            <Span class="hidden_calc" style="display: none;">
+                                <p><b>Field with unknown diameter</b></p>
+                                <label for="eyepiece_magnification">Eyepiece Magnification</label>
+                                <input type="text" class="only_numbers" id="eyepiece_magnification2" placeholder="X">
+                                <label for="objective_magnification">Objective Magnification</label>
+                                <input type="text" class="only_numbers" id="objective_magnification2" placeholder="X">
+                            </Span>    
+                        <label for="field_diameter">Field diameter (0.4 - 0.69mm):</label>
+                        <input type="text" class="only_numbers" id="field_diameter" placeholder="mm"><br>
+                        <p>if field diameter is unknown use the calculator:</p>
+                        <button id="calculator_button">Show/hide calculator</button><br><br>
+                    </div>
+                    <input type="radio" name="mitotic_rate_radio" id="mitotic_rate_radio_micro">
+                    <label for="mitotic_rate_radio_micro">Only microinvasion present (not graded)</label><br>
+                    <input type="radio" name="mitotic_rate_radio" id="mitotic_rate_radio_no_residue">
+                    <label for="mitotic_rate_radio_no_residue">No residual invasive carcinoma</label><br>
+                </div>
+                <div id="overal_grade_div">
+                    <h3>Overall Grade</h3>
+                    <button id="calculator_calculate">Calculate overall Garde</button>
+                    <p style="font-weight: bold; ">NB Requires Tubular differentiation, Nuclear pleomorphism and mitotic rate score!</p>
+                    <p id="overall_grade" style="font-size: larger; font-weight: bold;"></p>
+            </div>
+        </div>
+    </body>
+    <footer>
+        <script src="invasive_breasttumor_script.js"></script>
+    </footer>
+</html>
