@@ -57,7 +57,7 @@
                         <col width = "130">
                         <tbody>
                             <tr >
-                                <td style="padding-right: 10px;"><label for="tumor_max">Estimated size (extent) of DCIS is at least </label></td>
+                                <td style="padding-right: 10px;"><label for="tumor_max">Greatest dimension of tumor: </label></td>
                                 <td><label for="tumor_additional1">Additional dimension </label></td>
                                 <td><label for="tumor_additional2">Additional dimension </label></td>
                             </tr>
@@ -619,17 +619,19 @@
                 <label for="tumor_extension_skin_NA">Skin is not present</label><br>
                 <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_present_uninvolved" value="Skin is present and uninvolved">
                 <label for="tumor_extension_skin_present_uninvolved">Skin is present and uninvolved</label><br>
-                <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_present_invasive_no_ulcer" value="Invasive carcinoma directly invades into the dermis or epidermis without skin ulceration (this does not change the T classification)">
-                <label for="tumor_extension_skin_present_invasive_no_ulcer">Invasive carcinoma directly invades into the dermis or epidermis without skin ulceration (this does not change the T classification)</label><br>
+                <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_present_invasive_no_ulcer" value="Invasive carcinoma directly invades into the dermis or epidermis without skin ulceration">
+                <label for="tumor_extension_skin_present_invasive_no_ulcer">Invasive carcinoma directly invades into the dermis or epidermis without skin ulceration</label><br>
                 <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_present_invasive_ulcerative" value="Invasive carcinoma directly invades into the dermis or epidermis with skin ulceration">
                 <label for="tumor_extension_skin_present_invasive_ulcerative">Invasive carcinoma directly invades into the dermis or epidermis with skin ulceration</label><br>
                 <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_satellite" value="Satellite skin foci of invasive carcinoma are present (ie, not contiguous with the invasive carcinoma in the breast)">
                 <label for="tumor_extension_skin_satellite">Satellite skin foci of invasive carcinoma are present (ie, not contiguous with the invasive carcinoma in the breast)</label><br>
+
                 <h4>nipple</h4>
                 <input type="radio" name="tumor_extension_nipple_radio" id="tumor_extension_nipple_DCIS_not_involved" value="DCIS does not involve the nipple epidermis ">
                 <label for="tumor_extension_nipple_DCIS_not_involved">DCIS does not involve the nipple epidermis </label><br>
                 <input type="radio" name="tumor_extension_nipple_radio" id="tumor_extension_nipple_DCIS_involved" value="DCIS involves nipple epidermis (Paget disease of the nipple)">
                 <label for="tumor_extension_nipple_DCIS_involved">DCIS involves nipple epidermis (Paget disease of the nipple)</label><br>
+
                 <h4>Skeletal muscle</h4>
                 <input type="radio" name="tumor_extension_smuscle_radio" id="tumor_extension_smuscle_NA" value="No skeletal muscle is present">
                 <label for="tumor_extension_smuscle_NA">No skeletal muscle is present</label><br>
@@ -855,6 +857,33 @@
 
             <br><br>
 
+            <div>
+                <h3>Lymphovascular invasion</h3>
+                 <input type="radio" id="lymphovascular_invasion_NA" name="lymphovascular_invasion" value="Not identified" onclick="radioInput(this, false)">
+                 <label for="lymphovascular_invasion_NA">Not identified</label><br>
+                 <input type="radio" id="lymphovascular_invasion_present" name="lymphovascular_invasion" value="Present" onclick="radioInput(this, false)">
+                 <label for="lymphovascular_invasion_present">Present</label><br>
+                 <input type="radio" id="lymphovascular_invasion_CD" name="lymphovascular_invasion" value="Cannot be determined" onclick="radioInput(this, true)">
+                 <label for="lymphovascular_invasion_CD">Cannot be determined</label>
+            </div>
+ 
+            <br><br>
+
+            <div>
+                <h3>Dermal Lymphovascular Invasion</h3>
+                <input type="radio" name="dermal_lymphv_invasion_radio" id="dermal_lymphv_invasion_radio_no_skin" value="No skin present">
+                <label for="dermal_lymphv_invasion_radio_no_skin">No skin present</label><br>
+                <input type="radio" name="dermal_lymphv_invasion_radio" id="dermal_lymphv_invasion_radio_NA" value="Not identified">
+                <label for="dermal_lymphv_invasion_radio_NA">Not identified</label><br>
+                <input type="radio" name="dermal_lymphv_invasion_radio" id="dermal_lymphv_invasion_radio_present" value="Present">
+                <label for="dermal_lymphv_invasion_radio_present">Present</label><br>
+                <input type="radio" name="dermal_lymphv_invasion_radio" id="dermal_lymphv_invasion_radio_CD" value="Cannot be determined">
+                <label for="dermal_lymphv_invasion_radio_CD">Cannot be determined</label><br>
+            </div>
+
+
+            <br><br>
+
             <div id="distal_metastases_div">
                 <h2>Distal metastases</h2>
                 <input type="checkbox" id="distal_metastases_lung" class="distal_metastases" value="Lung(s)">
@@ -868,8 +897,21 @@
                 <p id="distal_metastases_note" style="color: rgba(192, 8, 8, 0.596); display: none;">Note: The presence of distant metastases in a case of DCIS would be very unusual.  Additional sampling to identify invasive carcinoma in the breast or additional history to document a prior or synchronous invasive carcinoma is advised in the evaluation of such cases.</p>
             </div>
 
-            <h2>Additional info</h2>
+            <br><br>
 
+            
+            <h2>Additional info</h2>
+            
+            <div id="clinical_findings">
+                <h3>Additional clinical findings</h3>
+                <input type="checkbox" name="clinical_find" id="clinical_find_erythema" value="Erythema">
+                <label for="clinical_find_erythema">Erythema</label><br>
+                <input type="checkbox" name="clinical_find" id="clinical_find_inv_skin_less" value="Edema involving more than 1/3 of skin">
+                <label for="clinical_find_inv_skin_less">Edema involving more than 1/3 of skin</label><br>
+                <input type="checkbox" name="clinical_find" id="clinical_find_inv_skin_more" value="Edema involving 1/3 of skin or more">
+                <label for="clinical_find_inv_skin_more">Edema involving 1/3 of skin or more</label><br>
+            </div>
+            <br><br>
             <input type="checkbox" name="mol_studies" id="mol_studies_pcr_pos">
             <label for="mol_studies_pcr_pos">Positive molecular findings (RT-PCR)</label><br><br>
 
