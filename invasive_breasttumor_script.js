@@ -195,31 +195,121 @@ $(document).ready(function(){
     $('body').on("keyup", '.only_numbers', function (){
         replacetext(this)
     })
+    $('body').on("change", ".addunits", function(){
+        appendunits(this)
+    })
+    $('body').on("click", '.only_numbers', function (){
+        $(this).val(null)
+    })
     $('body').on("click", "#copy_result_btn", function () {
         copyToClipboard('#results_block')
     });
     // show/hide elements
-
+    
     $("input[name=tumor_size]").on("click", function(){
         show_hide("#tumor_size_greatest_dim", "#tumor_size_table_div")
     })
     $("input[name=mitotic_rate_radio]").on("click", function(){
         show_hide("#mitotic_rate_radio_present", "#mitotic_rate_info_div")
     })
+    $("input[name=tumor_focality_radio]").on("click", function(){
+        show_hide("#tumor_focality_radio_multi", "#nr_foci_div")
+    })
+    $("input[name=DCIS_radio]").on("click", function(){
+        show_hide("#DCIS_radio_present", "#DCIS_present_div")
+    })
+    $("input[name=DCIS_radio]").on("click", function(){
+        show_hide("#DCIS_radio_present", "#DCIS_div")
+    })
+    $("#show_nuclear_grade_info_table").on("click", function(){
+        show_hide("#show_nuclear_grade_info_table", "#nuclear_grade_info_table")
+    })
+    $("input[name=LCIS_radio]").on("click", function(){
+        show_hide("#LCIS_present", "#LCIS_text_div")
+    })
+
+    //DCIS margins div
+    $("input[name='margins_radio']").on("change", function(){
+        show_hide("#margins_uninvolved", "#margins_uninvolved_div")
+    })
+    $("input[name='margins_uninvolved_radio']:not('#margins_uninvolved_CD')").on("change", function(){
+        cboxInput(this, "only_numbers addunits", "mm")
+    })
+    $("#margins_uninvolved_CD").on("change", function(){
+        cboxInput(this)
+    })
+    $("#specify_closest_margin_CA").on("change", function(){
+        cboxInput(this)
+    })
+    $("#specify_closest_margin_CA").on("change", function(){
+        show_hide("#specify_closest_margin_CA", "#specify_closest_margin_div", "hide")
+    })
+    $("input[name='margins_radio']").on("change", function(){
+        show_hide("#margins_positive", "#margins_positive_div")
+    })
+    $("input[name='margins_positive_location']:not('#margins_positive_CA')").on("click", function(){
+        cboxInput(this, " ", "Specify extent")
+    })
+    $("#margins_positive_CA").on("click", function(){
+        cboxInput(this, null, "Specify")
+        disable_class(this)
+    })
+
+    //invasive tumor margins div
+    $("input[name='tumor_margins_radio']").on("change", function(){
+        show_hide("#tumor_margins_uninvolved", "#tumor_margins_uninvolved_div")
+    })
+    $("input[name='tumor_margins_uninvolved_radio']:not('#tumor_margins_uninvolved_CD')").on("change", function(){
+        cboxInput(this, "only_numbers addunits", "mm")
+    })
+    $("#tumor_margins_uninvolved_CD").on("change", function(){
+        cboxInput(this)
+    })
+    $("#specify_closest_tumor_margin_CA").on("change", function(){
+        cboxInput(this)
+    })
+    $("#specify_closest_tumor_margin_CA").on("change", function(){
+        show_hide("#specify_closest_tumor_margin_CA", "#specify_closest_tumor_margin_div", "hide")
+    })
+    $("input[name='tumor_margins_radio']").on("change", function(){
+        show_hide("#tumor_margins_positive", "#tumor_margins_positive_div")
+    })
+    $("input[name='tumor_margins_positive_location']:not('#tumor_margins_positive_CA')").on("click", function(){
+        cboxInput(this, " ", "Specify extent")
+    })
+    $("#tumor_margins_positive_CA").on("click", function(){
+        cboxInput(this, null, "Specify")
+        disable_class(this)
+    })
+
+    //create inputbox
+    $("#tumor_site_Other").on("click", function(){
+        cboxInput(this)
+    })
+    $("#tumor_site_Clock_position").on("click", function(){
+        cboxInput(this, "only_numbers addunits", "o'clock")
+    })
+    $("#tumor_site_Distance_from_nipple").on("click", function(){
+        cboxInput(this, "only_numbers addunits", "cm")
+    })
+    $("#architectural_pattern_Other").on("click", function(){
+        cboxInput(this)
+    })
+    
 
     $("#calculator_button").on("click", function(){
-       $(".hidden_calc").toggle()     
+       $(".hidden_calc").toggle()
        $("#field_diameter").prop("disabled", $("#calculator_div").is(":visible"))
     })
     $("#calculator_calculate").on("click", function(){
         const fieldDia = $("#field_diameter").nval()
-        if (!fieldDia) {
+        if ($("#calculator_div").is(":visible") && $("#eyepiece_magnification").nval() && $("#objective_magnification").nval() && $("#known_microfield_D").nval()) {
             const x = $("#eyepiece_magnification").nval()*$("#objective_magnification").nval()*$("#known_microfield_D").nval()
             const fieldDia = x/($("#eyepiece_magnification2").nval()*$("#objective_magnification2").nval())
             document.getElementById("field_diameter").value = fieldDia
         }
-        if (fieldDia < 0.4) {return alert("Field diameter too small")}
-        if (fieldDia > 0.69) {return alert("Field diameter too large")}
+        if (fieldDia && fieldDia < 0.4) {return alert("Field diameter too small")}
+        if (fieldDia &&fieldDia > 0.69) {return alert("Field diameter too large")}
         for (i = 0; i < mitoArray.length; i++) {
             if (fieldDia == mitoArray[i][0]){
                 var s1 = mitoArray[i][1]
@@ -237,10 +327,15 @@ $(document).ready(function(){
         if ($("#glandular_dif_score1").is(":checked")){var glandScore = 1}
         if ($("#glandular_dif_score2").is(":checked")){var glandScore = 2}
         if ($("#glandular_dif_score3").is(":checked")){var glandScore = 3}
-
+        
         if (!(nuclearScore && glandScore && score)){
-            return alert("check Glandular (Acinar)/Tubular Differentiation , Nuclear Pleomorphism AND Mitotic Rate score")
+            $("input[name=overall_grade_radio]").prop("checked", false)
+            $("#overall_grade_radio_CD").prop("checked", true)
+            alert("Check Glandular (Acinar)/Tubular Differentiation , Nuclear Pleomorphism AND Mitotic Rate score")
+            $("#overall_grade_radio_CD_label").animate({fontSize: "150%", fontWeight : "150%"}, "slow").animate({fontSize: "100%"}, "slow")
+            return
         } else {
+            $("input[name=overall_grade_radio]").prop("checked", false)
             var Ograde = nuclearScore + glandScore + score
             document.getElementById("overall_grade").innerHTML = "Overall Grade " + Ograde
         }
@@ -262,6 +357,38 @@ $(document).ready(function(){
             $('#histotype_other_div').slideUp("slow");
         }
     });
+    //table controls
+    $('body').on("click", "#regional_lymph_nodes_add_row", function () {
+        addNewRow()
+    });
+    $('body').on("click", ".remove-row", function() {
+        if ($(this).closest('tr').parent().find("tr").length <= 2 ) {
+            return
+        } else {
+            $(this).closest('td').parent().remove();
+        }
+    });
+    function addNewRow() {
+        var rowToAdd = $("#regional_lymph_nodes_specified_table tbody tr:last").clone();
+        $(rowToAdd).find('input').each(function(){
+            $(this).val(null);
+        });
+        $("#regional_lymph_nodes_specified_table tbody").append(rowToAdd);
+    }
+    $('#regional_lymph_nodes').change(function () {
+        if ($('#regional_lymph_nodes').val() === "Involved by tumor cells") {
+            $('#regional_lymph_nodes_block_general').slideUp("slow");
+            $('#regional_lymph_nodes_block_specified').slideDown("slow");
+        } else if ($('#regional_lymph_nodes').val() === "Uninvolved by tumor cells") {
+            $('#regional_lymph_nodes_block_specified').slideUp("slow");
+            $('#regional_lymph_nodes_block_general').slideDown("slow");
+        } else {
+            $('#regional_lymph_nodes_block_specified').slideUp("slow");
+        }
+    });
+    
+    
+
 
     //returns number value instead of string
     $.fn.nval = function() {
@@ -269,11 +396,58 @@ $(document).ready(function(){
         };
     
 
+    function calcGradeM(){
+    if ($(".distal_metastases").is(':checked')) {
+        return 'M1'
+
+    } else {
+        return 'M0'
+    }
+}
+
+function calcGradeN() {
+    var axilMacro = $("#axillary_lymph_nodes_macrometa").nval()           
+    var axilMicro = $("#axillary_lymph_nodes_micrometa").nval()       
+    var infClavMacro = $("#infraclavicular_lymph_nodes_macrometa").nval()       
+    var infClavMicro = $("#infraclavicular_lymph_nodes_micrometa").nval()
+    var intMamSentinel = $("#int_mammary_lymph_nodes_guardians").nval()
+    var intMamMacro =  $("#int_mammary_lymph_nodes_macrometa").nval()
+    var intMamMicro =  $("#int_mammary_lymph_nodes_micrometa").nval()
+    
+    if ($("#supraclavicular_lymph_nodes_ls").nval() > 0 ) {
+        return 'pN3c'         
+    } else if ((axilMacro + axilMicro < 9 && axilMacro > 0 && $("#meta_internal_mammary").is(":checked"))  || ((4 < axilMacro + axilMicro < 9  && axilMacro > 0) && (intMamSentinel > 0 && intMamMacro + intMamMicro > 0 ))) {
+        return 'pN3b'
+    } else if (((axilMacro + axilMicro > 10) && axilMacro > 0) || (infClavMacro + infClavMicro > 0)) {
+        return 'pN3a';
+    } else if ($("#meta_internal_mammary").is(":checked") && ((axilMacro + axilMicro) == 0) ) {
+        return 'pN2b';
+    } else if (4 < axilMacro + axilMicro < 9  && axilMacro > 0) {
+        return 'pN2a';
+    } else if ((intMamSentinel > 0 && (intMamMacro + intMamMicro > 0 ) ) && (0 < axilMacro + axilMicro < 4  && axilMacro > 0)) {
+        return 'pN1c';
+    } else if ($("#int_mammary_ipsi").is(":checked") && intMamSentinel > 0 && intMamMacro + intMamMicro > 0 ) {
+        return 'pN1b';
+    } else if (0 < axilMacro + axilMicro < 4  && axilMacro > 0) {
+        return 'pN1a';
+    } else if (totals[5] > 0) {
+        return 'pN1mi';
+    } else if ($("#mol_studies_pcr_pos").is(":checked")) {
+        return 'pN0 (mol+)';
+    } else if (totals[6] > 0) {
+        return 'pN0 (i+)';
+    } else if ($("#regional_lymph_nodes").val() != "No lymph nodes submitted or found") {
+        return 'N0'        
+    } else {
+        return 'NX'
+    }
+}
+function calcGradeT() {
+}
+
+
+
 })
-
-
-
-
 
 
 
