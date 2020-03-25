@@ -281,6 +281,10 @@ $(document).ready(function(){
         cboxInput(this, null, "Specify")
         disable_class(this)
     })
+    $("#calculator_button").on("click", function(){
+       $(".hidden_calc").toggle()
+       $("#field_diameter").prop("disabled", $("#calculator_div").is(":visible"))
+    })
 
     //create inputbox
     $("#tumor_site_Other").on("click", function(){
@@ -297,10 +301,8 @@ $(document).ready(function(){
     })
     
 
-    $("#calculator_button").on("click", function(){
-       $(".hidden_calc").toggle()
-       $("#field_diameter").prop("disabled", $("#calculator_div").is(":visible"))
-    })
+
+    //field diameter and overall grade calculator
     $("#calculator_calculate").on("click", function(){
         const fieldDia = $("#field_diameter").nval()
         if ($("#calculator_div").is(":visible") && $("#eyepiece_magnification").nval() && $("#objective_magnification").nval() && $("#known_microfield_D").nval()) {
@@ -343,7 +345,6 @@ $(document).ready(function(){
 
 
     $('#histologic_type, #histotype_other_div').change(function () {
-       
         if (($('#histologic_type').val().indexOf("Invasive carcinoma, type cannot be determined") >= 0)||
             ($('#histologic_type').val().indexOf("Invasive carcinoma with features of (specify):") >= 0)||            
             ($('#histotype_other').val().indexOf("Other type not listed (specify)") >= 0)) {
@@ -357,6 +358,8 @@ $(document).ready(function(){
             $('#histotype_other_div').slideUp("slow");
         }
     });
+
+
     //table controls
     $('body').on("click", "#regional_lymph_nodes_add_row", function () {
         addNewRow()
@@ -394,6 +397,76 @@ $(document).ready(function(){
     $.fn.nval = function() {
         return Number(this.val())
         };
+    
+
+    function addCheckbox(cbox_class, heading, text_if_notchecked) {
+        if (document.querySelector('input[class*="'+ cbox_class +'"]:checked')) {
+            $('#results_block').append(heading);
+            var cbox_list = [];
+            $.each($('input[class*="'+ cbox_class +'"]:checked'), function () {
+                cbox_list.push($(this).val());
+                if ( $("#" + $(this).attr("id") + "_text").val() ){
+                    cbox_list.push("(" + $("#" + $(this).attr("id") + "_text").val() + ")");
+                }
+            });
+            $('#results_block').append(cbox_list.join(", ") + "<br/>");
+        } else if (text_if_notchecked){
+            $('#results_block').append(text_if_notchecked);
+        }
+    }
+
+    //adds all visible inputs under input_div_id  extra_text - adds text before input box value if it has no label.
+    function addGenericInput(parameters) {
+        var input_div_id =  parameters.input_div_id
+        var heading =  parameters.heading
+        var extra_text = parameters.extra_text
+        var text_if_notchecked = parameters.text_if_notchecked
+        var join = parameters.join
+
+        var divid = $(input_div_id + " :input:visible")
+        var str = []
+        if (!join) {join = "<br/>"}
+        divid.each(function(){
+            var tagname = document.getElementById($(this).prop("id")).tagName
+            if ($(this).is(":checked") || tagname == "SELECT") {
+                str.push($(this).val())
+            } else if (!["radio", "checkbox"].includes($(this).attr("type")) && $(this).val()) {
+                if ($(input_div_id + " label[for=" + $(this).prop("id")+ "]").text() != "") {
+                    str.push($(input_div_id + " label[for=" + $(this).prop("id")+ "]").text() +  $(this).val())
+                } else {
+                    if (!extra_text) {
+                        str.push($(this).val())
+                    } else {
+                        str.push(extra_text + $(this).val())
+                    }
+                }
+            }
+        })       
+        if (!str[0]) {
+            if (!text_if_notchecked) {
+                return
+            } else {
+                $('#results_block').append(text_if_notchecked  + "<br/>")
+            }
+        } else {
+            $('#results_block').append(heading + str.join(join)  + "<br/>")
+        }
+    }
+
+
+    function addExtraFindingsText() {
+        if ($('#extra_findings_text').val()) {
+            $('#results_block').append('Ancillary studies: ' + $('#extra_findings_text').val());
+            $('#results_block').append('<br/>');
+        }
+    }
+
+    function addComments() {
+        if ($('#invasion_comments_text').val()) {
+            $('#results_block').append("Extra comments: " + $('#invasion_comments_text').val());
+            $('#results_block').append('<br/>');
+        }
+    }
     
 
     function calcGradeM(){
@@ -442,10 +515,111 @@ function calcGradeN() {
         return 'NX'
     }
 }
+
 function calcGradeT() {
+    if ($("#clinical_find_erythema").is(":checked") && $("#clinical_find_inv_skin_more").is(":checked")){
+        return 'pT4d'
+    } else if ($("#tumor_extension_smuscle_ivades_cwall").is(":checked") && ($("#tumor_extension_skin_satellite").is(":checked") || $("#tumor_extension_skin_present_invasive_ulcerative").is(":checked"))){
+        return 'pT4c'
+    } else if ($("#tumor_extension_skin_satellite").is(":checked") || $("#tumor_extension_skin_present_invasive_ulcerative").is(":checked")){
+        return 'pT4b'
+    } else if ($("#tumor_extension_smuscle_ivades_cwall").is(":checked")){
+        return 'pT4a'
+    /* } else if (){
+        return 'pT4' */
+    } else if ($("#tumor_max").nval() > 50 ){
+        return 'pT3'
+    } else if (20 < $("#tumor_max").nval() <= 50 ){
+        return 'pT2'
+    } else if (10 < $("#tumor_max").nval() <= 20 ){
+        return 'pT1c'
+    } else if (5 < $("#tumor_max").nval() <= 10 ){
+        return 'pT1b'
+    } else if (1 < $("#tumor_max").nval() <= 5 ){
+        return 'pT1a'
+    } else if (0 < $("#tumor_max").nval() <= 1){
+        return 'pT1mi'
+    } else if ($("#DCIS_present_spec_post_neoadjuvant").is(":checked")){
+        return 'pTis'
+    } else {
+        return 'TX'
+    }
 }
 
+const extentObj = {
+    input_div_id: "#tumor_parameters_div",
+    heading: "</br>Size of DCIS</br>",
+    extra_text: null,
+    text_if_notchecked: null,
+    join: "</br> &#8212; "
+}
+const histoObj = {
+    input_div_id: "#histologic_type_div",
+    heading: "</br>Histologic Type: ",
+    //extra_text: null,
+    //text_if_notchecked: null,
+    join: " "
+}
+const archPatternObj = {
+    input_div_id: "#architectural_patterns_div",
+    heading: "</br>Architectural Patterns: ",
+    extra_text: "Specification: ",
+    //text_if_notchecked: null,
+    join: ", "
+}
+const nuclearGradeObj = {
+    input_div_id: "#nuclear_grade_div",
+    heading: "</br>Nuclear Grade: ",
+    join: ""
+}
+const necrosisObj = {
+    input_div_id: "#necrosis_div",
+    heading: "</br>Necrosis: ",
+    join: ""
+}
+const marginsObj = {
+    input_div_id: "#margins_div",
+    heading: "</br>Margins: ",
+    //extra_text: null,
+    //text_if_notchecked: null,
+    join: ", "
+}
 
+const lymphTabFoot = {
+    input_div_id: "#lymph_nodes_table_footer_div",
+    heading: "</br>"
+    //extra_text: null,
+    //text_if_notchecked: null,
+    //join: ", "
+}
+const distMetastasesObj = {
+    input_div_id: "#distal_metastases_div",
+    heading: "</br>Distal metastases in: ",
+    //extra_text: null,
+    //text_if_notchecked: null,
+    join: ", "
+}
+
+$('#calc_results_btn').on("click", function () {
+    $('#results_block').empty();
+/*     addCheckbox("tumor_site_chkbx", "Tumor Site: ")
+    addGenericInput(extentObj)
+    addGenericInput(histoObj)
+    addGenericInput(archPatternObj)
+    addGenericInput(nuclearGradeObj)
+    addGenericInput(necrosisObj)
+    addGenericInput(marginsObj)
+ */    $('#results_block').append(sumtable("#lymph_nodes_tables", "<br/>Lymphnodes: ", "<br/>Total nr of lymphnodes examined: "))
+    addGenericInput(lymphTabFoot)
+    addGenericInput(distMetastasesObj)
+    $("#results_block").append(calcGradeT() + calcGradeN() + calcGradeM() + "<br/>")
+    addExtraFindingsText();
+    addComments();
+    $('#results_title').show();
+    $('#results_block').show();
+    $('#copy_result').text('');
+    $('#results_copy_block').show();
+});
 
 })
 
