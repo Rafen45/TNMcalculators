@@ -12,9 +12,9 @@
         <title>Invasive breast tumor</title>
         </head>
     <body>
-        <div class="calc-form grey-form" style="max-width:800px; margin-bottom: 30px;">
+        <div id="general_div" class="calc-form grey-form" style="max-width:800px; margin-bottom: 30px;">
             <h1 class="form-title">Invasive breast tumor</h1>
-            <div>
+            <div id="tumor_site_div">
                 <h3>Tumor site</h3>
                 <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Upper_outer_quadrant" value="Upper outer quadrant">
                 <label for="tumor_site_Upper_outer_quadrant" >Upper outer quadrant</label><br>
@@ -50,7 +50,7 @@
                 <h3>Tumor Size</h3>
                 <input type="radio" name="tumor_size" id="tumor_size_microinvasive" value="Microinvasion only (≤1 mm)">
                 <label for="tumor_size_microinvasive"></label>Microinvasion only (≤1 mm)<br>
-                <input type="radio" name="tumor_size" id="tumor_size_greatest_dim">
+                <input type="radio" name="tumor_size" id="tumor_size_greatest_dim" value="">
                 <label for="tumor_size_greatest_dim">Greatest dimension of largest invasive focus >1 mm (specify exact measurement) </label><br>
                 <div id="tumor_size_table_div" style="display: none; padding: 30px;">
                     <table  class="tumor_sizes" >
@@ -79,13 +79,14 @@
             <br><br>
 
             <div id="histologic_type_div">
-                <h3>Histologic Type <span class="tooltip">
-                    <img src="info.png" style="width: 18px;height: 18px; " alt="i">
+                 <span class="tooltip">
+                    <img src="info.png" style="width: 18px;height: 18px; float: left;" alt="i">
+                    <h3 style="position: relative; left: 10px;">Histologic Type</h3>
                     <p class="tooltiptext">Determination of histologic type is based on routine histologic examination; special stains such as e-cadherin are not required for determining histologic type. The histologic type corresponds to the <b>largest carcinoma</b>. If there are smaller carcinomas of a different type, this information should be included under “Additional Pathologic Findings.”<br>
                     <b style="font-size: larger;">NB!</b> Special type carcinomas should consist of at least 90% pure pattern.</p>
-                </span></h3>
+                </span>
                 <select id="histologic_type">
-                    <option value="No residual invasive carcinoma" selected>No residual invasive carcinoma</option>
+                    <option value="" selected>No residual invasive carcinoma</option>
                     <option>Invasive carcinoma of no special type (ductal) </option>
                     <option>Micro-invasive carcinoma</option>
                     <option>Invasive lobular carcinoma</option>
@@ -177,33 +178,33 @@
             <br><br>
 
             <div id="mitotic_rate_div">
-                <h3>Mitotic Rate
                 <span class="tooltip">
-                    <img src="info.png" style="width: 18px;height: 18px; " alt="i">
+                    <img src="info.png" style="width: 18px;height: 18px; float: left;" alt="i">
+                    <h3 style="position: relative; left: 10px;">Mitotic Rate</h3>
                         <p class="tooltiptext">The grade corresponds to the largest area of invasion. If there are smaller foci of invasion of a different grade, this information should be included under <b>“Additional Pathologic Findings.”</b><br>
                         </p>
-                </span></h3>
-                        <input type="radio" name="mitotic_rate_radio" id="mitotic_rate_radio_present">
+                    </span>
+                        <input type="radio" name="mitotic_rate_radio" id="mitotic_rate_radio_present" value="">
                         <label for="mitotic_rate_radio_present">Mitotic rate can be determined</label><br>	
                     <div id="mitotic_rate_info_div" style="display: none; padding: 20px; line-height: 2;">
-                        <label for="n_mitoses">Number of mitoses per 10 fields </label>
+                        <label for="n_mitoses">Number of mitoses per 10 fields: </label>
                         <input type="text" class="only_numbers" id="n_mitoses"><br>
                         <div id="calculator_div" class="hidden_calc" style="display: none; padding: 10px 0px 10px">
-                                <p><b>Field with known diameter</b></p>
-                                <label for="eyepiece_magnification">Eyepiece Magnification</label>
-                                <input type="text" class="only_numbers" id="eyepiece_magnification" placeholder="X">
-                                <label for="objective_magnification">Objective Magnification</label>
-                                <input type="text" class="only_numbers" id="objective_magnification" placeholder="X">
-                                <label for="known_microfield_D">Known Field Diameter</label>
-                                <input type="text" class="only_numbers" id="known_microfield_D" placeholder="mm"><br>
-                            </div>
-                            <Span class="hidden_calc" style="display: none;">
-                                <p><b>Field with unknown diameter</b></p>
-                                <label for="eyepiece_magnification">Eyepiece Magnification</label>
-                                <input type="text" class="only_numbers" id="eyepiece_magnification2" placeholder="X">
-                                <label for="objective_magnification">Objective Magnification</label>
-                                <input type="text" class="only_numbers" id="objective_magnification2" placeholder="X">
-                            </Span>    
+                            <p><b>Field with known diameter</b></p>
+                            <label for="eyepiece_magnification">Eyepiece Magnification</label>
+                            <input type="text" class="only_numbers" id="eyepiece_magnification" placeholder="X">
+                            <label for="objective_magnification">Objective Magnification</label>
+                            <input type="text" class="only_numbers" id="objective_magnification" placeholder="X">
+                            <label for="known_microfield_D">Known Field Diameter</label>
+                            <input type="text" class="only_numbers" id="known_microfield_D" placeholder="mm"><br>
+                        </div>
+                        <Span class="hidden_calc" style="display: none;">
+                            <p><b>Field with unknown diameter</b></p>
+                            <label for="eyepiece_magnification">Eyepiece Magnification</label>
+                            <input type="text" class="only_numbers" id="eyepiece_magnification2" placeholder="X">
+                            <label for="objective_magnification">Objective Magnification</label>
+                            <input type="text" class="only_numbers" id="objective_magnification2" placeholder="X">
+                        </Span>    
                         <label for="field_diameter">Field diameter (0.4 - 0.69mm):</label>
                         <input type="text" class="only_numbers" id="field_diameter" placeholder="mm"><br>
                         <p>if field diameter is unknown use the calculator:</p>
@@ -213,7 +214,7 @@
                     <label for="mitotic_rate_radio_micro">Only microinvasion present (not graded)</label><br>
                     <input type="radio" name="mitotic_rate_radio" id="mitotic_rate_radio_no_residue">
                     <label for="mitotic_rate_radio_no_residue">No residual invasive carcinoma</label><br>
-                </div>
+                <br>
                 <div id="overal_grade_div">
                     <h3>Overall Grade</h3>
                     <button id="calculator_calculate">Calculate overall Garde</button>
@@ -224,8 +225,10 @@
                     <input type="radio" name="overall_grade_radio" id="overall_grade_radio_no_residue" value="No residual invasive carcinoma">
                     <label for="overall_grade_radio_no_residue">No residual invasive carcinoma</label><br>
                     <input type="radio" name="overall_grade_radio" id="overall_grade_radio_CD" value="Score cannot be determined">
-                    <label for="overall_grade_radio_CD" id="overall_grade_radio_CD_label">Score cannot be determined</label><br>
-                    <p id="overall_grade" style="font-size: larger; font-weight: bold;"></p>
+                    <label for="overall_grade_radio_CD" id="overall_grade_radio_CD_label">Score cannot be determined</label><br><br>
+                    <label for="overall_grade">Nottingham combined histologic grade: </label>
+                    <input type="text" disabled id="overall_grade" style="font-size: larger; font-weight: bold;"></input>
+                </div>
             </div>
 
             <br><br>
@@ -239,12 +242,12 @@
                 <div id="nr_foci_div" style="display: none; padding: 20px; line-height: 2.5;">
                     <label for="nr_of_foci">Number of foci:</label>
                     <input type="text" class="nr_of_foci_class only_numbers" id="nr_of_foci"><br>
-                    <label for="nr_of_foci">Number of foci is at least:</label>
-                    <input type="text" class="nr_of_foci_class only_numbers" id="nr_of_foci"><br>
-                    <input type="checkbox" class="nr_of_foci_class" id="nr_of_foci" value="Number of foci cannot be determined" onclick="disable_class(this)">
+                    <label for="nr_of_foci_at_least">Number of foci is at least:</label>
+                    <input type="text" class="nr_of_foci_class only_numbers" id="nr_of_foci_at_least"><br>
+                    <input type="checkbox" class="nr_of_foci_class" id="nr_of_foci_cbox" value="Number of foci cannot be determined">
                     <label for="nr_of_foci">Number of foci cannot be determined</label><br>
                     <label for="nr_of_foci">Sizes of individual foci (millimeters):  </label>
-                    <input type="text" class="nr_of_foci_class only_numbers" id="nr_of_foci" ><br>
+                    <input type="text" class="nr_of_foci_class only_numbers addunits" id="nr_of_foci" ><br>
                 </div>
                 <input type="radio" name="tumor_focality_radio" id="tumor_focality_radio_CD" value="Cannot be determined">
                 <label for="tumor_focality_radio_">Cannot be determined</label><br>
@@ -253,19 +256,19 @@
 
             <div id="DCIS_check_div">
                 <h3>Ductal Carcinoma In Situ (DCIS)</h3>
-                <input type="radio" name="DCIS_radio" id="DCIS_radio_NA">
+                <input type="radio" name="DCIS_radio" id="DCIS_radio_NA" value="DCIS not identified">
                 <label for="DCIS_radio_NA">Not identified</label><br>
-                <input type="radio" name="DCIS_radio" id="DCIS_radio_present">
+                <input type="radio" name="DCIS_radio" id="DCIS_radio_present" value="">
                 <label for="DCIS_radio_present">Present</label><br>
                 <div id="DCIS_present_div" style="display: none; padding: 20px;">
-                    <input type="radio" name="DCIS_present_spec" id="DCIS_present_spec_neg_EIC">
+                    <input type="radio" name="DCIS_present_spec" id="DCIS_present_spec_neg_EIC" value="Negative for extensive intraductal component (EIC)">
                     <label for="DCIS_present_spec_neg_EIC">Negative for extensive intraductal component (EIC) </label> <br>
-                    <input type="radio" name="DCIS_present_spec" id="DCIS_present_spec_pos_EIC">
+                    <input type="radio" name="DCIS_present_spec" id="DCIS_present_spec_pos_EIC" value="Positive for extensive intraductal component (EIC)">
                     <label for="DCIS_present_spec_pos_EIC">Positive for extensive intraductal component (EIC) </label> <br>
-                    <input type="radio" name="DCIS_present_spec" id="DCIS_present_spec_post_neoadjuvant">
+                    <input type="radio" name="DCIS_present_spec" id="DCIS_present_spec_post_neoadjuvant" value="Only DCIS is present after presurgical (neoadjuvant) therapy">
                     <label for="DCIS_present_spec_post_neoadjuvant">Only DCIS is present after presurgical (neoadjuvant) therapy</label> <br>
                 </div>
-                <input type="radio" name="DCIS_radio" id="DCIS_radio_CD">
+                <input type="radio" name="DCIS_radio" id="DCIS_radio_CD" value="Cannot be excluded ">
                 <label for="DCIS_radio_CE">Cannot be excluded </label><br>
             </div>
 
@@ -275,7 +278,10 @@
                 <br><br>
 
                 <div id="DCIS_parameters_div">
-                    <h3>Size (Extent) of DCIS <span class="tooltip"><img src="info.png" style="width: 20px;height: 20px;" alt="i" ><p class="tooltiptext"> The size (extent) of DCIS (greatest dimension using gross and microscopic evaluation) is an estimation of the volume of breast tissue occupied by DCIS.</p></span> </h3>
+                    <span class="tooltip"></span>
+                    <img src="info.png" style="width: 18px;height: 18px; float: left;" alt="i" >
+                        <h3 style="position: relative; left: 10px;">Size (Extent) of DCIS</h3> 
+                        <p class="tooltiptext"> The size (extent) of DCIS (greatest dimension using gross and microscopic evaluation) is an estimation of the volume of breast tissue occupied by DCIS.</p></span> 
                     <table id="tumor_size" class="tumor_sizes">
                         <col width = "130">
                         <tbody>
@@ -338,7 +344,7 @@
                         <input type="radio" name="nuclear_grade" id="nuclear_grade_III" value="Grade III">
                         <label for="nuclear_grade_III">Grade III</label><br>
                         <br>
-                        <input type="checkbox" id="show_nuclear_grade_info_table">
+                        <input type="checkbox" id="show_nuclear_grade_info_table" value="">
                         <label for="show_nuclear_grade_info_table">Show grading table</label> <br>
                         <br>
                     </div>
@@ -537,11 +543,11 @@
                     <div id="margins_uninvolved_div" style="padding-left: 40px; display: none;">
                         <h4>Distance from closest margin</h4>
                         <div id="specify_closest_margin_div">
-                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_spec" value="Distance from closest margin " >
+                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_spec" value="Distance from closest margin: " >
                             <label for="margins_uninvolved_spec">Specify </label><br>
-                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_lt" value="Distance from closest margin less than " >
+                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_lt" value="Distance from closest margin less than: " >
                             <label for="margins_uninvolved_lt">Less than</label><br>
-                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_gt" value="Distance from closest margin greater than " >
+                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_gt" value="Distance from closest margin greater than: " >
                             <label for="margins_uninvolved_gt">Greater than </label><br>
                             <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_CD" value="Distance from closest margin cannot be determined" >
                             <label for="margins_uninvolved_CD">Cannot be determined</label><br>
@@ -613,7 +619,8 @@
             <br><br>
 
             <div id="tumor_extension_div">
-                <h3>Tumor Extension (required only if the structures are present and involved) </h3>
+                <h3>Tumor Extension </h3>
+                <p style="font-size: 12px;"><b>Required only if the structures are present and involved</b></p>
                 <h4>Skin</h4>
                 <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_NA" value="Skin is not present">
                 <label for="tumor_extension_skin_NA">Skin is not present</label><br>
@@ -670,7 +677,7 @@
                     <input type="checkbox" class="specify_closest_m" id="specify_closest_tumor_margin_CA"><label for="specify_closest_tumor_margin_CA_text">Closest margin cannot be determined</label>
     
                     <div style="line-height: 25px; " id="distance_from_o_tumor_margins_div" >
-                        <h3>Distance from other margins</h3>
+                        <h4>Distance from other margins</h4>
                         <label  for="distance_from_other_tumor_margins_Anterior">Anterior</label> 
                         <input type="text" id="distance_from_other_tumor_margins_Anterior" class="only_numbers addunits" placeholder="mm"  ><br>
                         <label  for="distance_from_other_tumor_margins_Posterior">Posterior</label> 
@@ -857,7 +864,7 @@
 
             <br><br>
 
-            <div>
+            <div id="lymphovascular_in_div">
                 <h3>Lymphovascular invasion</h3>
                  <input type="radio" id="lymphovascular_invasion_NA" name="lymphovascular_invasion" value="Not identified" onclick="radioInput(this, false)">
                  <label for="lymphovascular_invasion_NA">Not identified</label><br>
@@ -869,7 +876,7 @@
  
             <br><br>
 
-            <div>
+            <div id="dermal_lymph_inv_div">
                 <h3>Dermal Lymphovascular Invasion</h3>
                 <input type="radio" name="dermal_lymphv_invasion_radio" id="dermal_lymphv_invasion_radio_no_skin" value="No skin present">
                 <label for="dermal_lymphv_invasion_radio_no_skin">No skin present</label><br>
@@ -885,7 +892,7 @@
             <br><br>
 
             <div id="distal_metastases_div">
-                <h2>Distal metastases</h2>
+                <h3>Distal metastases</h3>
                 <input type="checkbox" id="distal_metastases_lung" class="distal_metastases" value="Lung(s)">
                 <label for="distal_metastases_lung">Lung</label><br>
                 <input type="checkbox" id="distal_metastases_liver" class="distal_metastases" value="Liver">
@@ -915,12 +922,16 @@
             <input type="checkbox" name="mol_studies" id="mol_studies_pcr_pos">
             <label for="mol_studies_pcr_pos">Positive molecular findings (RT-PCR)</label><br><br>
 
-            <B>Ancillary studies</B><br>
-            <textarea id="extra_findings_text" rows="4" cols="50" placeholder="Write a freeform description "></textarea><br>
+            <div id="ancillary_studies_div">
+                <h3>Ancillary studies</h3>
+                <textarea id="extra_findings_text" rows="4" cols="50" placeholder="Write a freeform description "></textarea><br>
+            </div>
 
-            <b>Comments</b><br>
-            <textarea id="invasion_comments_text" rows="4" cols="50" placeholder="Write a freeform description "></textarea>
-            <br>
+            <div id="comments_div">
+                <h3>Comments</h3>
+                <textarea id="invasion_comments_text" rows="4" cols="50" placeholder="Write a freeform description "></textarea>
+                <br>
+            </div>
 
             <button class="btn btn-primary" id="calc_results_btn">Calculate results</button>
 
