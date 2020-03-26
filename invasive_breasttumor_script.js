@@ -284,8 +284,18 @@ $(document).ready(function(){
     $("#calculator_button").on("click", function(){
        $(".hidden_calc").toggle()
        $("#field_diameter").prop("disabled", $("#calculator_div").is(":visible"))
+       if ($("#calculator_div").is(":visible")) {
+            $("#field_diameter").val(null)
+       }
+       
     })
-
+    $("body").on("click", function(){
+        $("#nr_of_foci_at_least").prop("disabled", ($("#nr_of_foci").val() == "") ? false : true)
+        $("#nr_of_foci").prop("disabled", ($("#nr_of_foci_at_least").val() == "") ? false : true)
+    })
+    $("#nr_of_foci_cbox").on("click", function(){
+        $(".nr_of_foci_class").not(this).toggle("slow")
+    })
     //create inputbox
     $("#tumor_site_Other").on("click", function(){
         cboxInput(this)
@@ -299,19 +309,30 @@ $(document).ready(function(){
     $("#architectural_pattern_Other").on("click", function(){
         cboxInput(this)
     })
-    
 
+    $("body").on("change", function(){
+        if ($("#calculator_div").is(":visible") && $("#eyepiece_magnification").nval() && $("#objective_magnification").nval() && $("#known_microfield_D").nval() && $("#eyepiece_magnification2").nval() && $("#objective_magnification2").nval()) {
+            const x = $("#eyepiece_magnification").nval()*$("#objective_magnification").nval()*$("#known_microfield_D").nval()
+            var fieldDia = x/($("#eyepiece_magnification2").nval()*$("#objective_magnification2").nval())
+            fieldDia = Math.round((fieldDia + Number.EPSILON) * 100) / 100
+            document.getElementById("field_diameter").value = fieldDia
+            console.log(fieldDia);
+            
+            console.log();
+            
+            if (0.69 < fieldDia || fieldDia < 0.4) {
+                $("#field_diameter").css("background-color", "rgba(247, 17, 17, 0.7)")
+            } else {
+                $("#field_diameter").css("background-color", "rgba(177, 228, 252, 0)")
+            }
+        }
+    })
 
     //field diameter and overall grade calculator
     $("#calculator_calculate").on("click", function(){
         const fieldDia = $("#field_diameter").nval()
-        if ($("#calculator_div").is(":visible") && $("#eyepiece_magnification").nval() && $("#objective_magnification").nval() && $("#known_microfield_D").nval()) {
-            const x = $("#eyepiece_magnification").nval()*$("#objective_magnification").nval()*$("#known_microfield_D").nval()
-            const fieldDia = x/($("#eyepiece_magnification2").nval()*$("#objective_magnification2").nval())
-            document.getElementById("field_diameter").value = fieldDia
-        }
         if (fieldDia && fieldDia < 0.4) {return alert("Field diameter too small")}
-        if (fieldDia &&fieldDia > 0.69) {return alert("Field diameter too large")}
+        if (fieldDia && fieldDia > 0.69) {return alert("Field diameter too large")}
         for (i = 0; i < mitoArray.length; i++) {
             if (fieldDia == mitoArray[i][0]){
                 var s1 = mitoArray[i][1]
@@ -339,7 +360,7 @@ $(document).ready(function(){
         } else {
             $("input[name=overall_grade_radio]").prop("checked", false)
             var Ograde = nuclearScore + glandScore + score
-            document.getElementById("overall_grade").innerHTML = "Overall Grade " + Ograde
+            document.getElementById("overall_grade").value = "Overall Grade " + Ograde
         }
     })
 
@@ -415,24 +436,39 @@ $(document).ready(function(){
         }
     }
 
-    //adds all visible inputs under input_div_id  extra_text - adds text before input box value if it has no label.
-    function addGenericInput(parameters) {
-        var input_div_id =  parameters.input_div_id
-        var heading =  parameters.heading
-        var extra_text = parameters.extra_text
-        var text_if_notchecked = parameters.text_if_notchecked
-        var join = parameters.join
-
+    //adds all visible inputs under input_div_id  extra_text - adds text before (each)input box value if it has no label. Parameters can be an object OR a <div> id. The function has default values for all of the necessary parameters.
+    // Example object:
+    // const extentObj = {
+    //     input_div_id: "#tumor_parameters_div",
+    //     heading: "</br>Heading here</br>",
+    //     extra_text: "Specify",
+    //     text_if_notchecked: "Nothing is checked",
+    //     join: "</br> &#8212; "
+    // } 
+    function addGenericInput(parameters) {       
+        if (typeof parameters === null) {
+            return
+        } else if (typeof parameters !== 'object'){
+            var input_div_id = parameters
+        } else {            
+            var input_div_id =  parameters.input_div_id
+            var heading =  parameters.heading
+            var extra_text = parameters.extra_text
+            var text_if_notchecked = parameters.text_if_notchecked
+            var join = parameters.join
+        }
         var divid = $(input_div_id + " :input:visible")
         var str = []
-        if (!join) {join = "<br/>"}
+        if (!heading) {var heading = "</br>" + $(input_div_id).find("h3").text() + ":</br>&#8195;"}
+        
+        if (!join) {var join = "<br/>&#8195;"}
         divid.each(function(){
             var tagname = document.getElementById($(this).prop("id")).tagName
             if ($(this).is(":checked") || tagname == "SELECT") {
-                str.push($(this).val())
+                if ($(this).val()){str.push($(this).val())}
             } else if (!["radio", "checkbox"].includes($(this).attr("type")) && $(this).val()) {
                 if ($(input_div_id + " label[for=" + $(this).prop("id")+ "]").text() != "") {
-                    str.push($(input_div_id + " label[for=" + $(this).prop("id")+ "]").text() +  $(this).val())
+                    str.push($(input_div_id + " label[for=" + $(this).prop("id")+ "]").text() + " " +  $(this).val())
                 } else {
                     if (!extra_text) {
                         str.push($(this).val())
@@ -441,7 +477,7 @@ $(document).ready(function(){
                     }
                 }
             }
-        })       
+        })
         if (!str[0]) {
             if (!text_if_notchecked) {
                 return
@@ -546,20 +582,6 @@ function calcGradeT() {
     }
 }
 
-const extentObj = {
-    input_div_id: "#tumor_parameters_div",
-    heading: "</br>Size of DCIS</br>",
-    extra_text: null,
-    text_if_notchecked: null,
-    join: "</br> &#8212; "
-}
-const histoObj = {
-    input_div_id: "#histologic_type_div",
-    heading: "</br>Histologic Type: ",
-    //extra_text: null,
-    //text_if_notchecked: null,
-    join: " "
-}
 const archPatternObj = {
     input_div_id: "#architectural_patterns_div",
     heading: "</br>Architectural Patterns: ",
@@ -567,54 +589,53 @@ const archPatternObj = {
     //text_if_notchecked: null,
     join: ", "
 }
-const nuclearGradeObj = {
-    input_div_id: "#nuclear_grade_div",
-    heading: "</br>Nuclear Grade: ",
-    join: ""
-}
-const necrosisObj = {
-    input_div_id: "#necrosis_div",
-    heading: "</br>Necrosis: ",
-    join: ""
-}
 const marginsObj = {
     input_div_id: "#margins_div",
     heading: "</br>Margins: ",
-    //extra_text: null,
+    extra_text: "   &#8195;&#8195;&#8195;",
     //text_if_notchecked: null,
-    join: ", "
+    join: "    </br>    "
+}
+const tumExtObj = {
+    input_div_id: "#tumor_extension_div",
+    heading: "</br>Tumor Extension: </br> &#8212; ",
+    join: "</br> &#8212; "
 }
 
-const lymphTabFoot = {
-    input_div_id: "#lymph_nodes_table_footer_div",
-    heading: "</br>"
-    //extra_text: null,
-    //text_if_notchecked: null,
-    //join: ", "
-}
-const distMetastasesObj = {
-    input_div_id: "#distal_metastases_div",
-    heading: "</br>Distal metastases in: ",
-    //extra_text: null,
-    //text_if_notchecked: null,
-    join: ", "
-}
+var HeadingObjArray = [ 
+    "#tumor_parameters_div", 
+    "#histologic_type_div", 
+    "#glandular_diferentiation_div", 
+    "#nuclear_pleomorphism_div", 
+    "#overal_grade_div", 
+    "#tumor_focality_div", 
+    "#DCIS_check_div", 
+    "#DCIS_parameters_div", 
+    archPatternObj,
+    "#nuclear_grade_div",
+    "#necrosis_div",
+    "#margins_div",
+    "#LCIS_div",
+    tumExtObj,
+    "#tumor_margins_div"
+]
+var HeadingObjArray2 = [
+    "#regional_lymph_nodes_block_general",
+    "#lymphovascular_in_div",
+    "#dermal_lymph_inv_div",
+    "#distal_metastases_div",
+    "#clinical_findings",
+    "#ancillary_studies_div",
+    "#comments_div"
+]
 
 $('#calc_results_btn').on("click", function () {
     $('#results_block').empty();
-/*     addCheckbox("tumor_site_chkbx", "Tumor Site: ")
-    addGenericInput(extentObj)
-    addGenericInput(histoObj)
-    addGenericInput(archPatternObj)
-    addGenericInput(nuclearGradeObj)
-    addGenericInput(necrosisObj)
-    addGenericInput(marginsObj)
- */    $('#results_block').append(sumtable("#lymph_nodes_tables", "<br/>Lymphnodes: ", "<br/>Total nr of lymphnodes examined: "))
-    addGenericInput(lymphTabFoot)
-    addGenericInput(distMetastasesObj)
-    $("#results_block").append(calcGradeT() + calcGradeN() + calcGradeM() + "<br/>")
-    addExtraFindingsText();
-    addComments();
+    addCheckbox("tumor_site_chkbx", "Tumor Site: ")
+    HeadingObjArray.forEach(element => addGenericInput(element))
+    $('#results_block').append(sumtable("#lymph_nodes_tables", "<br/>Lymphnodes: ", "<br/>Total nr of lymphnodes examined: "))
+    HeadingObjArray2.forEach(element => addGenericInput(element))
+    $("#results_block").append("</br>" + "TMN classification: " + calcGradeT() + calcGradeN() + calcGradeM() + "<br/>")
     $('#results_title').show();
     $('#results_block').show();
     $('#copy_result').text('');
