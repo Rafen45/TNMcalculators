@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" content="Pathology.ee | Patoloogia infoportaal">
+        <meta name="theme-color" content="#5f6e72">
+        <meta name="csrf-param" content="_csrf">
+        <meta name="csrf-token" content="8uTYzpz9sMw1wxiwNf1fl4ziUuyKAwqmnJPWSvBfLW7Gg6CfpIvVlA33VfFFpDr766oHqvJ0Z-Cs4ZB7hD54Xg==">
+        <link href="stylesheet.css" type="text/css" rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>Invasive breast tumor</title>
+        </head>
+    <body>
+        <div id="general_div" class="calc-form grey-form" style="max-width:800px; margin-bottom: 30px;">
+            <h1 class="form-title">Invasiivne rinnakasvaja</h1>
+            <div id="tumor_site_div">
+                <h3>Kasvja asukoht</h3>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Upper_outer_quadrant" value="Ülemine välimine veerand">
+                <label for="tumor_site_Upper_outer_quadrant" >Ülemine välimine veerand</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Lower_outer_quadrant" value="Alumine välimine veerand">
+                <label for="tumor_site_Lower_outer_quadrant" >Alumine välimine veerand</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Upper_inner_quadrant" value="Ülemine sisemine veerand">
+                <label for="tumor_site_Upper_inner_quadrant" >Ülemine sisemine veerand</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Lower_inner_quadrant" value="Alumine sisemine veerand">
+                <label for="tumor_site_Lower_inner_quadrant" >Alumine sisemine veerand</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Central" value="Keskel">
+                <label for="tumor_site_Central" >Keskel</label><br>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Nipple" value="Nibu">
+                <label for="tumor_site_Nipple" >Nibu</label><br>
+                <div>
+                    <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Clock_position" value="Kell">
+                    <label for="tumor_site_Clock_position" >Kell</label><br>
+                </div>
+                <div>
+                    <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Distance_from_nipple" value="Kaugus nibust">
+                    <label for="tumor_site_Distance_from_nipple" >Kaugus nibust</label><br>
+                </div>
+                <div>
+                    <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Other" value="Muu">
+                    <label for="tumor_site_Other" >Muu<br</label><br>
+                </div>
+                <input type="checkbox" class="tumor_site_chkbx" name="tumor_site" id="tumor_site_Not_specified" value="Täpsustamata">
+                <label for="tumor_site_Not_specified" >Täpsustamata</label><br>
+            </div>
+
+            <br><br>
+
+            <div id="tumor_parameters_div">
+                <h3>Kasvaja suurus</h3>
+                <input type="radio" name="tumor_size" id="tumor_size_microinvasive" value="Ainult mikroinvasioon (≤1 mm)">
+                <label for="tumor_size_microinvasive"></label>Ainult mikroinvasioon (≤1 mm)<br>
+                <input type="radio" name="tumor_size" id="tumor_size_greatest_dim" value="">
+                <label for="tumor_size_greatest_dim">Suurima ivasiooni fookuse suurim mõõt &gt;1 mm (Täpsusta mõõt) </label><br>
+                <div id="tumor_size_table_div" style="display: none; padding: 30px;">
+                    <table  class="tumor_sizes" >
+                        <col width = "130">
+                        <tbody>
+                            <tr >
+                                <td style="padding-right: 10px;"><label for="tumor_max">Kasvaja suurim mõõt: </label></td>
+                                <td><label for="tumor_additional1">Lisamõõde: </label></td>
+                                <td><label for="tumor_additional2">Lisamõõde: </label></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" id="tumor_max" class="only_numbers addunits" placeholder="mm" ></td>
+                                <td><input type="text" id="tumor_additional1" class="only_numbers addunits" placeholder="mm"></td>
+                                <td><input type="text" id="tumor_additional2" class="only_numbers addunits" placeholder="mm"></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="radio" name="tumor_size" id="tumor_size_no_residual" value="Jääkkartsinoomi ei esine ">
+                <label for="tumor_size_no_residual"></label>Jääkkartsinoomi ei esine <br>
+                <input type="radio" name="tumor_size" id="tumor_size_CD" value="Suurima invasiooni fookuse suurust ei saa määrata.">
+                <label for="tumor_size_CD"></label>Suurima invasiooni fookuse suurust ei saa määrata.<br>
+            </div>
+
+            <br><br>
+
+            <div id="histologic_type_div">
+                 <span class="tooltip">
+                    <img src="info.png" style="width: 18px;height: 18px; float: left;" alt="i">
+                    <h3 style="position: relative; left: 10px;">Histoloogiline tüüp</h3>
+                    <p class="tooltiptext">Histoloogilise tüübi määramine põhineb rutiinsel histoloogilisel uuringul - erivärvingud nagu nt e-kadheriin ei ole vajalikud histoloogilise tüübi määramiseks. Histoloogiline tüüp vastab <b>suurimale</b> kartsinoomile. Kui esineb teisi kartsinoome teistsuguse tüübiga, siis see tuleks märkida "lisauuringute" all.
+                    <b style="font-size: larger;">NB!</b>Eritüüpi kasvajad peaksid koosnema vähemalt 90% puhtast mustrist.</p>
+                </span>
+                <select id="histologic_type">
+                    <option value="" selected>Jääkkartsinoomi ei esine</option>
+                    <option>Ilma eritüübita invasiivne kartsinoom (duktaalne)</option>
+                    <option>Mikroinvasiivne kartsinoom</option>
+                    <option>Invasiivne lobulaarne kartsinoom</option>
+                    <option>Invasiivne katsinoom nii duktaalsete kui lobulaarsete omadustega</option>
+                    <option>Invasiivne katsinoom eriomadustega (täpsusta): </option>
+                    <option>Tubulaarne kartsinoom</option>
+                    <option>Invasiivne sõeljas kartsinoom</option>
+                    <option>Mutsinoosne kartsinoom</option>
+                    <option>Invasiivne mikropapillaarne kartsinoom</option>
+                    <option>Apokriinne adenokartsinoom</option>
+                    <option>Metaplastiline kartsinoom</option>
+                    <option>Kapsuleeritud papillaarne kartsinoom invasiooniga</option>
+                    <option>Tahke papillaarne kartsinoom invasiooniga</option>
+                    <option>Intraduktaalne papillaarne adenokartsinoom invasiooniga</option>
+                    <option>Adenoid tsüstiline kartsinoom</option>
+                    <option>Neuroendokriinne tuumor</option>
+                    <option>Neruoendokriinne kartsinoom</option>
+                    <option>Invasiivne kartsinoom, mille tüüpi ei saa määrata</option>
+                    <option>Muu histoloogiline tüüp</option>
+                </select>
+                <div  id="histotype_other_div" style="display: none; padding: 30px;">
+                    <select id="histotype_other" >
+                        <option>Invasiivne papillaarne kartsinoom</option>
+                        <option>Onkolüütiline kartsinoom</option>
+                        <option>Lipiididerikas kartsinoom</option>
+                        <option>Glükogeenirikas kartsinoom</option>
+                        <option>Rasune kartsinoom</option>
+                        <option>Mutsinoosne tsüstadenokartsinoom NOS</option>
+                        <option>Atsinaarrakk-kartsinoom</option>
+                        <option>Klassikaline adenoid-tsüstiline kartsinoom</option>
+                        <option>Tahke-basaloidne adenoid-tsüstiline kartsinoom Solid-basaloid adenoid cystic carcinoma</option>
+                        <option>adenoid-tsüstiline kartsinoom kõrgeastmelise transformatsiooniga</option>
+                        <option>Sekretoorne kartsinoom</option>
+                        <option>Mukoepidermoidkartsinoom</option>
+                        <option>Polümorfne adenokartsinoom</option>
+                        <option>Kõrgrakuline kartsinoom vahetatud polaarsusega</option>
+                        <option>Adenoepirelioom koos kartsinoomiga</option>
+                        <option>Epireel-müoepiteelkartsinoom</option>
+                        <option>Muu tüüp (täpsusta)</option>
+    
+                    </select>
+                </div>
+                <div id="histotype_text_div" style="display: none; padding: 15px;">
+                    <textarea id="histotype_text" rows="4" cols="50" placeholder="Täpsusta"></textarea>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div id="glandular_diferentiation_div">
+                <h3>Glandulaarne (atsinaarne)/Tubulaarne diferentseerumine</h3>
+                <p style="font-weight: bold;">
+                    <input type="radio" name="glandular_dif" id="glandular_dif_score1" value="&gt;75% Kasvajast moodustab näärmelisi/tubulaarseid struktuure">
+                    <label for="">&gt;75% Kasvajast moodustab näärmelisi/tubulaarseid struktuure</label> <br>
+                    <input type="radio" name="glandular_dif" id="glandular_dif_score2" value="10% to 75% Kasvajast moodustab näärmelisi/tubulaarseid struktuure">
+                    <label for="">10% to 75% Kasvajast moodustab näärmelisi/tubulaarseid struktuure</label> <br>
+                    <input type="radio" name="glandular_dif" id="glandular_dif_score3" value="&lt;10% Kasvajast moodustab näärmelisi/tubulaarseid struktuure">
+                    <label for="">&lt;10% Kasvajast moodustab näärmelisi/tubulaarseid struktuure</label> <br>
+                </p>
+                <input type="radio" name="glandular_dif" id="glandular_dif_micro" value="Esineb vaid mikroinvasioon (ei hinnata)">
+                <label for="">Esineb vaid mikroinvasioon (ei hinnata)</label> <br>
+                <input type="radio" name="glandular_dif" id="glandular_dif_no_residue" value="Jääkkartsinoomi ei esine">
+                <label for="">Jääkkartsinoomi ei esine</label> <br>
+                <input type="radio" name="glandular_dif" id="glandular_dif_CD" value="Hinnangut ei saa anda">
+                <label for="">Hinnangut ei saa anda</label> <br>
+
+            </div>
+
+            <br><br>
+
+            <div id="nuclear_pleomorphism_div">
+                <h3>Tuuma pleomorfism</h3>
+                <p style="font-weight: bold;">
+                    <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_score1" value="Väikesed tuumad vähese suurenemisega võrreldes normaalsete rinnaepiteelirakkudega, ühtlased välispiirid, ühtlane tuumakromatiin, vähene suuruse varieeruvus.">
+                    <label for="nuclear_pleomorphism_radio_score1">Väikesed tuumad vähese suurenemisega võrreldes normaalsete rinnaepiteelirakkudega, ühtlased välispiirid, ühtlane tuumakromatiin, vähene suuruse varieeruvus.</label><br>
+                    <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_score2" value="Lahtiste vesikulaarsete tuumadega normist suuremad rakud, nähtavad tuumakesed ja keskmine variaablus nii kujus kui suuruses">
+                    <label for="nuclear_pleomorphism_radio_score2">Lahtiste vesikulaarsete tuumadega normist suuremad rakud, nähtavad tuumakesed ja keskmine variaablus nii kujus kui suuruses</label><br>
+                    <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_score3" value="Vesikulaarsed tuumad, tihti silmapaistvate tuumadega, esineb väljendunud variaablus suuruses ja kujus, kohati väga suured ja kummaliste kujudega">
+                    <label for="nuclear_pleomorphism_radio_score3">Vesikulaarsed tuumad, tihti silmapaistvate tuumadega, esineb väljendunud variaablus suuruses ja kujus, kohati väga suured ja kummaliste kujudega</label><br>
+                </p>
+                <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_micro" value="Esineb vaid mikroinvasioon (ei hinnata)">
+                <label for="nuclear_pleomorphism_radio_micro">Esineb vaid mikroinvasioon (ei hinnata)</label><br>
+                <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_no_residue" value="Jääkkartsinoomi ei esine">
+                <label for="nuclear_pleomorphism_radio_no_residue">Jääkkartsinoomi ei esine</label><br>
+                <input type="radio" name="nuclear_pleomorphism_radio" id="nuclear_pleomorphism_radio_CD" value="Hinnangut ei saa anda">
+                <label for="nuclear_pleomorphism_radio_CD">Hinnangut ei saa anda</label><br>
+            </div>
+
+            <br><br>
+
+            <div id="mitotic_rate_div">
+                <span class="tooltip">
+                    <img src="info.png" style="width: 18px;height: 18px; float: left;" alt="i">
+                    <h3 style="position: relative; left: 10px;">Mitoosimäär</h3>
+                        <p class="tooltiptext">Hinne vastab invasiooni suurimale alale. Kui esineb väiksemaid fookuseid teistsuguse hindega, siis see tuleks märkida "Kommentaarid" all.<br>
+                        </p>
+                    </span>
+                        <input type="radio" name="mitotic_rate_radio" id="mitotic_rate_radio_present" value="">
+                        <label for="mitotic_rate_radio_present">Mitoosimäära ei saa määrata</label><br>	
+                    <div id="mitotic_rate_info_div" style="display: none; padding: 20px; line-height: 2;">
+                        <label for="n_mitoses">Mitooside arv 10 välja kohta: </label>
+                        <input type="text" class="only_numbers" id="n_mitoses"><br>
+                        <div id="calculator_div" class="hidden_calc" style="display: none; padding: 10px 0px 10px">
+                            <p><b>Väli teadaoleva diameetriga</b></p>
+                            <label for="eyepiece_magnification">Okulaari suurendus</label>
+                            <input type="text" class="only_numbers" id="eyepiece_magnification" placeholder="X">
+                            <label for="objective_magnification">Objektiivi suurendus</label>
+                            <input type="text" class="only_numbers" id="objective_magnification" placeholder="X">
+                            <label for="known_microfield_D">Teadaolev välja diameeter</label>
+                            <input type="text" class="only_numbers" id="known_microfield_D" placeholder="mm"><br>
+                        </div>
+                        <Span class="hidden_calc" style="display: none;">
+                            <p><b>Väli tundmatu diameetriga Field with unknown diameter</b></p>
+                            <label for="eyepiece_magnification">Okulaari suurendus</label>
+                            <input type="text" class="only_numbers" id="eyepiece_magnification2" placeholder="X">
+                            <label for="objective_magnification">Objektiivi suurendus</label>
+                            <input type="text" class="only_numbers" id="objective_magnification2" placeholder="X">
+                        </Span>    
+                        <label for="field_diameter"> Field diameter (0.4 - 0.69mm):</label>
+                        <input type="text" class="only_numbers" id="field_diameter" placeholder="mm"><br>
+                        <p>if field diameter is unknown use the calculator:</p>
+                        <button id="calculator_button">Show/hide calculator</button><br><br>
+                    </div>
+                    <input type="radio" name="mitotic_rate_radio" id="mitotic_rate_radio_micro">
+                    <label for="mitotic_rate_radio_micro">Esineb vaid mikroinvasioon (ei hinnata)</label><br>
+                    <input type="radio" name="mitotic_rate_radio" id="mitotic_rate_radio_no_residue">
+                    <label for="mitotic_rate_radio_no_residue">Jääkkartsinoomi ei esine</label><br>
+                <br>
+                <div id="overal_grade_div">
+                    <h3>Üldhinne</h3>
+                    <button id="calculator_calculate">Arvuta üldhinne</button>
+                    <span style="font-weight: bold; font-style: italic; padding-left: 20px;">NB! Vajalik tubulaarne diferentsiooni, tuuma pleomorfismi ja mitoosimäära hinne!</span><br>
+                    <br>
+                    <input type="radio" name="overall_grade_radio" id="overall_grade_radio_micro" value="Esineb vaid mikroinvasioon (ei hinnata)">
+                    <label for="overall_grade_radio_micro">Esineb vaid mikroinvasioon (ei hinnata)</label><br>
+                    <input type="radio" name="overall_grade_radio" id="overall_grade_radio_no_residue" value="Jääkkartsinoomi ei esine">
+                    <label for="overall_grade_radio_no_residue">Jääkkartsinoomi ei esine</label><br>
+                    <input type="radio" name="overall_grade_radio" id="overall_grade_radio_CD" value="Hinnangut ei saa anda">
+                    <label for="overall_grade_radio_CD" id="overall_grade_radio_CD_label">Hinnangut ei saa anda</label><br><br>
+                    <label for="overall_grade">Nottingham kombineeritud histoloogiline hinne: </label>
+                    <input type="text" disabled id="overall_grade" style="font-size: larger; font-weight: bold;"></input>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div id="tumor_focality_div">
+                <h3>Tuumori fookus</h3>
+                <input type="radio" name="tumor_focality_radio" id="tumor_focality_radio_single" value="Ühe fookusega invasiivne kartsinoom">
+                <label for="tumor_focality_radio_">Ühe fookusega invasiivne kartsinoom</label><br>
+                <input type="radio" name="tumor_focality_radio" id="tumor_focality_radio_multi" value="Mitme fookusega invasiivne kartsinoom">
+                <label for="tumor_focality_radio_">Mitme fookusega invasiivne kartsinoom</label><br>
+                <div id="nr_foci_div" style="display: none; padding: 20px; line-height: 2.5;">
+                    <label for="nr_of_foci">Fookuste arv:</label>
+                    <input type="text" class="nr_of_foci_class only_numbers" id="nr_of_foci"><br>
+                    <label for="nr_of_foci_at_least">Fookuste arv on vähemalt:</label>
+                    <input type="text" class="nr_of_foci_class only_numbers" id="nr_of_foci_at_least"><br>
+                    <input type="checkbox" class="nr_of_foci_class" id="nr_of_foci_cbox" value="Fookuste arvu ei saa määrata">
+                    <label for="nr_of_foci">Fookuste arvu ei saa määrata</label><br>
+                    <label for="nr_of_foci">Individuaalsete fookuste suurused (mm):  </label>
+                    <input type="text" class="nr_of_foci_class only_numbers addunits" id="nr_of_foci" ><br>
+                </div>
+                <input type="radio" name="tumor_focality_radio" id="tumor_focality_radio_CD" value="Ei saa määrata">
+                <label for="tumor_focality_radio_">Ei saa määrata</label><br>
+
+            </div>
+
+            <div id="DCIS_check_div">
+                <h3>Duktaalne <i>Carcinoma In Situ</i> (DCIS)</h3>
+                <input type="radio" name="DCIS_radio" id="DCIS_radio_NA" value="DCIS ei ole tuvastatud">
+                <label for="DCIS_radio_NA">ei ole tuvastatud</label><br>
+                <input type="radio" name="DCIS_radio" id="DCIS_radio_present" value="">
+                <label for="DCIS_radio_present">Esineb</label><br>
+                <div id="DCIS_present_div" style="display: none; padding: 20px;">
+                    <input type="radio" name="DCIS_present_spec" id="DCIS_present_spec_neg_EIC" value="Negatiivne ulatusliku intraduktaalse komponendi osas (EIC)">
+                    <label for="DCIS_present_spec_neg_EIC">Negatiivne ulatusliku intraduktaalse komponendi osas (EIC) </label> <br>
+                    <input type="radio" name="DCIS_present_spec" id="DCIS_present_spec_pos_EIC" value="Positiivne ulatusliku intraduktaalse komponendi osas (EIC)">
+                    <label for="DCIS_present_spec_pos_EIC">Positiivne ulatusliku intraduktaalse komponendi osas (EIC) </label> <br>
+                    <input type="radio" name="DCIS_present_spec" id="DCIS_present_spec_post_neoadjuvant" value="Esineb vaid DCIS pärast kirurga eelset (neoadjuvant) teraapiat">
+                    <label for="DCIS_present_spec_post_neoadjuvant">Esineb vaid DCIS pärast kirurga eelset (neoadjuvant) teraapiat</label> <br>
+                </div>
+                <input type="radio" name="DCIS_radio" id="DCIS_radio_CD" value="Ei saa välistada ">
+                <label for="DCIS_radio_CE">Ei saa välistada </label><br>
+            </div>
+
+            <div id="DCIS_div" style="display: none; padding: 20px; background-color: rgba(177, 228, 252, 0.247);">
+
+
+                <br><br>
+
+                <div id="DCIS_parameters_div">
+                    <span class="tooltip"></span>
+                    <img src="info.png" style="width: 18px;height: 18px; float: left;" alt="i" >
+                        <h3 style="position: relative; left: 10px;">DCIS suurus/ulatus</h3> 
+                        <p class="tooltiptext">DCIS suurus/ulatus (suurim mõõde kasutades üld- ja mikroskoopilist hindamist) on hinnanguline rinnakoe maht, mis on DCISi poolt haaratud.</p></span> 
+                    <table id="tumor_size" class="tumor_sizes">
+                        <col width = "130">
+                        <tbody>
+                            <tr >
+                                    <td style="padding-right: 10px;"><label for="tumor_max">Hinnanguline DCIS suurus/ulats on vähemalt: </label></td>
+                                    <td><label for="tumor_additional1">Lisamõõde </label></td>
+                                    <td><label for="tumor_additional2">Lisamõõde </label></td>
+                            </tr>
+                            <tr>
+                                    <td><input type="text" id="tumor_max" class="only_numbers addunits" placeholder="cm" ></td>
+                                    <td><input type="text" id="tumor_additional1" class="only_numbers addunits" placeholder="cm"></td>
+                                    <td><input type="text" id="tumor_additional2" class="only_numbers addunits" placeholder="cm"></td>
+                                    
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <br><br>
+                                    <label for="nr_blocks_w_DCIS">DCISiga plokkide arv</label>                        
+                                    <input type="text" style="width: 30px;" id="nr_blocks_w_DCIS" class="only_numbers"><br><br>
+                                    <label for="nr_blocks_ex">Uuritud plokkide arv </label>
+                                    <input type="text" style="width: 30px;" id="nr_blocks_ex" class="only_numbers">
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+    
+                <br><br>
+                
+                <div id="architectural_patterns_div">
+                    <h3>Arhitektuurilised mustrid Architectural Patterns</h3>
+                    <input type="checkbox" id="architectural_pattern_Comedo" value="Komeedo ">
+                    <label for="architectural_pattern_Comedo">Komeedo </label><br>
+                    <input type="checkbox" id="architectural_pattern_Paget_disease" value="Pageti tõbi (DCIS haarab nibunahka)">
+                    <label for="architectural_pattern_Paget_disease">Pageti tõbi (DCIS haarab nibunahka)</label><br>
+                    <input type="checkbox" id="architectural_pattern_Cribriform" value="Kribiformne">
+                    <label for="architectural_pattern_Cribriform">Kribiformne</label><br>
+                    <input type="checkbox" id="architectural_pattern_Micropapillary" value="Mikropapillaarne">
+                    <label for="architectural_pattern_Micropapillary">Mikropapillaarne</label><br>
+                    <input type="checkbox" id="architectural_pattern_Papillary" value="Papillaarne">
+                    <label for="architectural_pattern_Papillary">Papillaarne</label><br>
+                    <input type="checkbox" id="architectural_pattern_Solid" value="Tahke">
+                    <label for="architectural_pattern_Solid">Tahke</label><br>
+                    <div>
+                        <input type="checkbox" id="architectural_pattern_Other" value="Muu">
+                        <label for="architectural_pattern_Other">Muu </label><br>
+                    </div>
+                </div>
+    
+                <br><br>
+    
+                <div>
+                    <div id="nuclear_grade_div">
+                        <h3>Tuumahinne</h3>
+                        <input type="radio" name="nuclear_grade" id="nuclear_grade_I" value="Hinne I">
+                        <label for="nuclear_grade_I">Hinne I</label><br>
+                        <input type="radio" name="nuclear_grade" id="nuclear_grade_II" value="Hinne II">
+                        <label for="nuclear_grade_II">Hinne II</label><br>
+                        <input type="radio" name="nuclear_grade" id="nuclear_grade_III" value="Hinne III">
+                        <label for="nuclear_grade_III">Hinne III</label><br>
+                        <br>
+                        <input type="checkbox" id="show_nuclear_grade_info_table" value="">
+                        <label for="show_nuclear_grade_info_table">Näita hindamistabelit</label> <br>
+                        <br>
+                    </div>
+                    <div id="nuclear_grade_info_table" style="display: none;">
+                            <table border="1" cellspacing="0" cellpadding="0" width="669">
+                                <tbody>
+                                    <tr>
+                                        <td width="109" valign="top">
+                                            <p>
+                                                <strong>
+                                                    <br/>
+                                                    Feature
+                                                </strong>
+                                            </p>
+                                        </td>
+                                        <td width="239" valign="top">
+                                            <p>
+                                                <strong>
+                                                    Grade I
+                                                    <br/>
+                                                    (Low)
+                                                </strong>
+                                            </p>
+                                        </td>
+                                        <td width="107" valign="top">
+                                            <p>
+                                                <strong>Grade II (Intermediate)</strong>
+                                            </p>
+                                        </td>
+                                        <td width="215" valign="top">
+                                            <p>
+                                                <strong>
+                                                    Grade III
+                                                    <br/>
+                                                    (High)
+                                                </strong>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="109" valign="top">
+                                            <p>
+                                                Pleomorphism
+                                            </p>
+                                        </td>
+                                        <td width="239" valign="top">
+                                            <p>
+                                                Monotonous (monomorphic)
+                                            </p>
+                                        </td>
+                                        <td width="107" valign="top">
+                                            <p>
+                                                Intermediate
+                                            </p>
+                                        </td>
+                                        <td width="215" valign="top">
+                                            <p>
+                                                Markedly pleomorphic
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="109" valign="top">
+                                            <p>
+                                                Size
+                                            </p>
+                                        </td>
+                                        <td width="239" valign="top">
+                                            <p>
+                                                1.5 to 2 x the size of a normal RBC or a normal duct
+                                                epithelial cell nucleus
+                                            </p>
+                                        </td>
+                                        <td width="107" valign="top">
+                                            <p>
+                                                Intermediate
+                                            </p>
+                                        </td>
+                                        <td width="215" valign="top">
+                                            <p>
+                                                &gt;2.5 x the size of a normal RBC or a normal duct
+                                                epithelial cell nucleus
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="109" valign="top">
+                                            <p>
+                                                Chromatin
+                                            </p>
+                                        </td>
+                                        <td width="239" valign="top">
+                                            <p>
+                                                Usually diffuse, finely dispersed chromatin
+                                            </p>
+                                        </td>
+                                        <td width="107" valign="top">
+                                            <p>
+                                                Intermediate
+                                            </p>
+                                        </td>
+                                        <td width="215" valign="top">
+                                            <p>
+                                                Usually vesicular with irregular chromatin distribution
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="109" valign="top">
+                                            <p>
+                                                Nucleoli
+                                            </p>
+                                        </td>
+                                        <td width="239" valign="top">
+                                            <p>
+                                                Only occasional
+                                            </p>
+                                        </td>
+                                        <td width="107" valign="top">
+                                        </td>
+                                        <td width="215" valign="top">
+                                            <p>
+                                                Prominent, often multiple
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="109" valign="top">
+                                            <p>
+                                                Mitoses
+                                            </p>
+                                        </td>
+                                        <td width="239" valign="top">
+                                            <p>
+                                                Only occasional
+                                            </p>
+                                        </td>
+                                        <td width="107" valign="top">
+                                            <p>
+                                                Intermediate
+                                            </p>
+                                        </td>
+                                        <td width="215" valign="top">
+                                            <p>
+                                                May be frequent
+                                            </p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td width="109" valign="top">
+                                            <p>
+                                                Orientation
+                                            </p>
+                                        </td>
+                                        <td width="239" valign="top">
+                                            <p>
+                                                Polarized toward luminal spaces
+                                            </p>
+                                        </td>
+                                        <td width="107" valign="top">
+                                            <p>
+                                                Intermediate
+                                            </p>
+                                        </td>
+                                        <td width="215" valign="top">
+                                            <p>
+                                                Usually not polarized toward the luminal space
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+                </div>
+    
+                <br><br>
+    
+                <div id="necrosis_div">
+                    <h3>Nekroos</h3>
+                    <input type="radio" name="necrosis_radio" id="necrosis_NA" value="Ei ole tuvastatud">
+                    <label for="necrosis_NA">Ei ole tuvastatud</label><br>
+                    <input type="radio" name="necrosis_radio" id="necrosis_present_focal" value="Esineb, fokaalne (väikesed fookused või üksiku raku nekroos) ">
+                    <label for="necrosis_present_focal">Esineb, fokaalne (väikesed fookused või üksiku raku nekroos) </label><br>
+                    <input type="radio" name="necrosis_radio" id="necrosis_present_central" value='Esineb, tsentraalne (ekspansiivne “komedo” nekroos)'>
+                    <label for="necrosis_present_central">Esineb, tsentraalne (ekspansiivne "komedo" nekroos)</label><br>
+                </div>
+
+                <div id="margins_div">
+                    <h3>Piirid</h3>
+                    <input type="radio" name="margins_radio" id="margins_CA" value="Ei saa hinnata">
+                    <label for="">Ei saa hinnata</label><br>
+        
+                    <input type="radio" name="margins_radio" id="margins_uninvolved" value="DCIS poolt haaramata">
+                    <label for="">DCIS poolt haaramata</label><br>
+        
+                    <div id="margins_uninvolved_div" style="padding-left: 40px; display: none;">
+                        <h4>Kaugus lähimast piirist</h4>
+                        <div id="specify_closest_margin_div">
+                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_spec" value="Kaugus lähimast piirist: " >
+                            <label for="margins_uninvolved_spec">täpsusta </label><br>
+                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_lt" value="Kaugus lähimast piirist vähem kui: " >
+                            <label for="margins_uninvolved_lt">Vähem kui</label><br>
+                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_gt" value="Kaugus lähimast piirist suurem kui: " >
+                            <label for="margins_uninvolved_gt">Suurem kui </label><br>
+                            <input type="radio" name="margins_uninvolved_radio" id="margins_uninvolved_CD" value="Kaugust lähimast piirist ei saa hinnata" >
+                            <label for="margins_uninvolved_CD">Ei saa hinnata</label><br>
+                            <br>
+                            <label for="specify_closest_margin" class="specify_closest_m">Täpsusta lähim piir (Nõutud vaid juhul kui kaugus &lt;2mm):</label>
+                            <input type="text" class="specify_closest_m" id="specify_closest_margin" placeholder="Piiri nimi"> <br>
+                        </div>
+        
+                        <input type="checkbox" class="specify_closest_m" id="specify_closest_margin_CA"><label for="specify_closest_margin_CA_text">Lähimat piiri ei saa määrata</label>
+        
+                        <div style="line-height: 25px; " id="distance_from_o_margins_div" >
+                            <h3>Kaugus teistest piiridest</h3>
+                            <label  for="distance_from_other_margins_Anterior">Anterioorne</label> 
+                            <input type="text" id="distance_from_other_margins_Anterior" class="only_numbers addunits" placeholder="mm"  ><br>
+                            <label  for="distance_from_other_margins_Posterior">Posterioorne</label> 
+                            <input type="text" id="distance_from_other_margins_Posterior" class="only_numbers addunits" placeholder="mm"  ><br>
+                            <label  for="distance_from_other_margins_Superior">Superioorne</label> 
+                            <input type="text" id="distance_from_other_margins_Superior" class="only_numbers addunits" placeholder="mm"  ><br>
+                            <label  for="distance_from_other_margins_Inferior">Inferioorne</label> 
+                            <input type="text" id="distance_from_other_margins_Inferior" class="only_numbers addunits" placeholder="mm"  ><br>
+                            <label  for="distance_from_other_margins_Medial">Mediaalne</label> 
+                            <input type="text" id="distance_from_other_margins_Medial" class="only_numbers addunits" placeholder="mm"  ><br>
+                            <label  for="distance_from_other_margins_Lateral">Lateraalne</label> 
+                            <input type="text" id="distance_from_other_margins_Lateral" class="only_numbers addunits" placeholder="mm"  ><br>
+                            <label for="distance_from_other_margins_Other">Muu</label> 
+                            <input type="text" id="distance_from_other_margins_Other" placeholder="Täpsusta piir"><br>
+                        </div>
+                    </div>
+        
+                    <input type="radio" name="margins_radio" id="margins_positive" value="Positive for DCIS (select all that apply):">
+                    <label for="">Positiivne DCIS osas (vali kõik mis kehtivad):</label><br>
+        
+                    <div style="padding-left: 40px; display: none; line-height: 25px;" id="margins_positive_div" >
+                        <br>
+                        <label  for="margins_positive_dist_from_Anterior">Anterioorne</label> 
+                        <input type="text" id="margins_positive_dist_from_Anterior" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="margins_positive_dist_from_Posterior">Posterioorne</label> 
+                        <input type="text" id="margins_positive_dist_from_Posterior" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="margins_positive_dist_from_Superior">Superioorne</label> 
+                        <input type="text" id="margins_positive_dist_from_Superior" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="margins_positive_dist_from_Inferior">Inverioorne</label> 
+                        <input type="text" id="margins_positive_dist_from_Inferior" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="margins_positive_dist_from_Medial">Mediaalne</label> 
+                        <input type="text" id="margins_positive_dist_from_Medial" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="margins_positive_dist_from_Lateral">Lateraalne</label> 
+                        <input type="text" id="margins_positive_dist_from_Lateral" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label for="margins_positive_dist_from_Other">Muu</label> 
+                        <input type="text" id="margins_positive_dist_from_Other" class="margins_positive_class" placeholder="Specify margin"><br>
+                        <input type="checkbox" class="margins_positive_class" name="margins_positive_location"id="margins_positive_CA" value="Ei saa määrata"> 
+                        <label for="margins_positive_CA">Ei saa määrata</label> <br>
+                    </div>
+                </div>
+        
+            </div>
+
+            <br><br>
+
+            <div id="LCIS_div">
+                <h3>Lobulaarne <i>Carcinoma In Situ</i> (LCIS)</h3>
+                <input type="radio" name="LCIS_radio" id="LCIS_NA" value="Pole tuvastatud">
+                <label for="LCIS_NA">Pole tuvastatud</label><br>
+                <input type="radio" name="LCIS_radio" id="LCIS_present" value="LCIS Esineb">
+                <label for="LCIS_present">LCIS Esineb</label><br>
+                <div id="LCIS_text_div" style="display: none; padding: 15px;">
+                    <textarea id="LCIS_text" rows="4" cols="50" placeholder="Kommentaarid"></textarea>
+                </div>
+            </div>
+
+            <br><br>
+
+            <div id="tumor_extension_div">
+                <h3>Teiste struktuuride haaratus (Tumor Extension) </h3>
+                <p style="font-size: 12px;"><b>Vajalik vaid juhul kui nimetatud struktuurid on esindatud ja haaratud</b></p>
+                <h4>Nahk</h4>
+                <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_NA" value="Nahka esineb">
+                <label for="tumor_extension_skin_NA">Nahka esineb</label><br>
+                <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_present_uninvolved" value="Nahka esineb ja on kasvajast haaramata">
+                <label for="tumor_extension_skin_present_uninvolved">Nahka esineb ja on kasvajast haaramata</label><br>
+                <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_present_invasive_no_ulcer" value="Invasiivne kartsinoom tungib otseselt dermisesse või epidermisesse, naha haavandumist ei esine">
+                <label for="tumor_extension_skin_present_invasive_no_ulcer">Invasiivne kartsinoom tungib otseselt dermisesse või epidermisesse, naha haavandumist ei esine</label><br>
+                <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_present_invasive_ulcerative" value="Invasiivne kartsinoom tungib otseselt dermisesse või epidermisesse, esineb naha haavandumine">
+                <label for="tumor_extension_skin_present_invasive_ulcerative">Invasiivne kartsinoom tungib otseselt dermisesse või epidermisesse, esineb naha haavandumine</label><br>
+                <input type="radio" name="tumor_extension_skin_radio" id="tumor_extension_skin_satellite" value="Satellite skin foci of invasive carcinoma are present (ie, not contiguous with the invasive carcinoma in the breast) Esinevad invasiivse kartsinoomi satelliit nahafokused/-kolded (st ei piirne rinna invasiivse kartsinoomiga)">
+                <label for="tumor_extension_skin_satellite">Satellite skin foci of invasive carcinoma are present (ie, not contiguous with the invasive carcinoma in the breast) Esinevad invasiivse kartsinoomi satelliit nahafokused/-kolded (st ei piirne rinna invasiivse kartsinoomiga)</label><br>
+
+                <h4>Nibu</h4>
+                <input type="radio" name="tumor_extension_nipple_radio" id="tumor_extension_nipple_DCIS_not_involved" value="DCIS ei haara nibu epidermist ">
+                <label for="tumor_extension_nipple_DCIS_not_involved">DCIS ei haara nibu epidermist </label><br>
+                <input type="radio" name="tumor_extension_nipple_radio" id="tumor_extension_nipple_DCIS_involved" value="DCIS haarab nibu epidermist (Nibu Pageti tõbi)">
+                <label for="tumor_extension_nipple_DCIS_involved">DCIS haarab nibu epidermist (Nibu Pageti tõbi)</label><br>
+
+                <h4>Skeletilihas</h4>
+                <input type="radio" name="tumor_extension_smuscle_radio" id="tumor_extension_smuscle_NA" value="Skeletilihast preparaadis ei esine">
+                <label for="tumor_extension_smuscle_NA">Skeletilihast preparaadis ei esine</label><br>
+                <input type="radio" name="tumor_extension_smuscle_radio" id="tumor_extension_smuscle_free" value="Skeletilihas on kartsinooomist vaba">
+                <label for="tumor_extension_smuscle_free">Skeletilihas on kartsinooomist vaba</label><br>
+                <input type="radio" name="tumor_extension_smuscle_radio" id="tumor_extension_smuscle_invsive" value="Kartsinoom haarab skeletilihast">
+                <label for="tumor_extension_smuscle_invsive">Kartsinoom haarab skeletilihast</label><br>
+                <input type="radio" name="tumor_extension_smuscle_radio" id="tumor_extension_smuscle_ivades_cwall" value="Kartsinoom tungib skeletilihasesse ja rindkereseina (klassifitseeritud kui T4a)">
+                <label for="tumor_extension_smuscle_ivades_cwall">Kartsinoom tungib skeletilihasesse ja rindkereseina</label><br>
+            </div>
+            
+            <div id="tumor_margins_div">
+                <h3>Piirid</h3>
+                <input type="radio" name="tumor_margins_radio" id="tumor_margins_CA" value="Ei saa hinnata">
+                <label for="">Ei saa hinnata</label><br>
+    
+                <input type="radio" name="tumor_margins_radio" id="tumor_margins_uninvolved" value="Invasiivsest kartsinoomist haaramata">
+                <label for="">Invasiivsest kartsinoomist haaramata</label><br>
+    
+                <div id="tumor_margins_uninvolved_div" style="padding-left: 40px; display: none;">
+                    <h4>Kaugus lähimast piirist</h4>
+                    <div id="specify_closest_tumor_margin_div">
+                        <input type="radio" name="tumor_margins_uninvolved_radio" id="tumor_margins_uninvolved_spec" value="Kaugus lähimast piirist " >
+                        <label for="tumor_margins_uninvolved_spec">Täpsusta </label><br>
+                        <input type="radio" name="tumor_margins_uninvolved_radio" id="tumor_margins_uninvolved_lt" value="Kaugus lähimast piirist vähem kui: " >
+                        <label for="tumor_margins_uninvolved_lt">Vähem kui</label><br>
+                        <input type="radio" name="tumor_margins_uninvolved_radio" id="tumor_margins_uninvolved_gt" value="Kaugus lähimast piirist suurem kui: " >
+                        <label for="tumor_margins_uninvolved_gt">Suurem kui </label><br>
+                        <input type="radio" name="tumor_margins_uninvolved_radio" id="tumor_margins_uninvolved_CD" value="Kaugus lähimast piirist ei saa hinnata" >
+                        <label for="tumor_margins_uninvolved_CD">Ei saa hinnata</label><br>
+                        <br>
+                        <label for="specify_closest_margin" class="specify_closest_m">Täpsusta lähim piir (Nõutud vaid juhul kui kaugus &lt;2mm):</label>
+                        <input type="text" class="specify_closest_m" id="specify_closest_margin" placeholder="Piiri nimi"> <br>
+                    </div>
+    
+                    <input type="checkbox" class="specify_closest_m" id="specify_closest_tumor_margin_CA"><label for="specify_closest_tumor_margin_CA_text">Lähimat piiri ei saa määrata</label>
+    
+                    <div style="line-height: 25px; " id="distance_from_o_tumor_margins_div" >
+                        <h4>Kaugus teistest piiridest</h4>
+                        <label  for="distance_from_other_tumor_margins_Anterior">Anterioorne</label> 
+                        <input type="text" id="distance_from_other_tumor_margins_Anterior" class="only_numbers addunits" placeholder="mm"  ><br>
+                        <label  for="distance_from_other_tumor_margins_Posterior">Posterioorne</label> 
+                        <input type="text" id="distance_from_other_tumor_margins_Posterior" class="only_numbers addunits" placeholder="mm"  ><br>
+                        <label  for="distance_from_other_tumor_margins_Superior">Superioorne</label> 
+                        <input type="text" id="distance_from_other_tumor_margins_Superior" class="only_numbers addunits" placeholder="mm"  ><br>
+                        <label  for="distance_from_other_tumor_margins_Inferior">Inferioorne</label> 
+                        <input type="text" id="distance_from_other_tumor_margins_Inferior" class="only_numbers addunits" placeholder="mm"  ><br>
+                        <label  for="distance_from_other_tumor_margins_Medial">Mediaalne</label> 
+                        <input type="text" id="distance_from_other_tumor_margins_Medial" class="only_numbers addunits" placeholder="mm"  ><br>
+                        <label  for="distance_from_other_tumor_margins_Lateral">Lateraalne</label> 
+                        <input type="text" id="distance_from_other_tumor_margins_Lateral" class="only_numbers addunits" placeholder="mm"  ><br>
+                        <label for="distance_from_other_tumor_margins_Other">Muu</label> 
+                        <input type="text" id="distance_from_other_tumor_margins_Other" placeholder="Täpsusta piir"><br>
+                    </div>
+                </div>
+    
+                <input type="radio" name="tumor_margins_radio" id="tumor_margins_positive" value="Invasiivsest kartsinoomist haaratud (vali kõik, mis kehtivad)">
+                <label for="">Invasiivsest kartsinoomist haaratud (vali kõik, mis kehtivad)</label><br>
+                
+                <div id="tumor_margins_positive_div" style="padding-left: 40px; display: none; line-height: 25px;">
+                    <div id="tumor_margin_pos_cbox_div">
+                        <input type="checkbox" name="tumor_margins_pos_cbox" id="tumor_margins_pos_cbox_ant" class="tum_margins_pos_cboc" value="</br>Anterioorne">
+                        <label for="tumor_margins_pos_cbox_ant">Anterioorne</label><br>
+                        <input type="checkbox" name="tumor_margins_pos_cbox" id="tumor_margins_pos_cbox_pos" class="tum_margins_pos_cboc" value="</br>Posterioorne">
+                        <label for="tumor_margins_pos_cbox_pos">Posterioorne</label><br>
+                        <input type="checkbox" name="tumor_margins_pos_cbox" id="tumor_margins_pos_cbox_sup" class="tum_margins_pos_cboc" value="</br>Superioorne">
+                        <label for="tumor_margins_pos_cbox_sup">Superioorne</label><br>
+                        <input type="checkbox" name="tumor_margins_pos_cbox" id="tumor_margins_pos_cbox_inf" class="tum_margins_pos_cboc" value="</br>Inferioorne">
+                        <label for="tumor_margins_pos_cbox_inf">Inferioorne</label><br>
+                        <input type="checkbox" name="tumor_margins_pos_cbox" id="tumor_margins_pos_cbox_med" class="tum_margins_pos_cboc" value="</br>Mediaalne">
+                        <label for="tumor_margins_pos_cbox_med">Mediaalne</label><br>
+                        <input type="checkbox" name="tumor_margins_pos_cbox" id="tumor_margins_pos_cbox_lat" class="tum_margins_pos_cboc" value="</br>Lateraalne">
+                        <label for="tumor_margins_pos_cbox_lat">Lateraalne</label><br>
+                        <input type="checkbox" name="tumor_margins_pos_cbox" id="tumor_margins_pos_cbox_other" class="tum_margins_pos_cboc" value="</br>Muu (Täpsusta piir)">
+                        <label for="tumor_margins_pos_cbox_other">Muu (Täpsusta piir)</label><br>
+                        <input type="checkbox" name="tumor_margins_pos_cbox" id="tumor_margins_pos_cbox_CD" class="tum_margins_pos_cboc" value="Ei saa määrata">
+                        <label for="tumor_margins_pos_cbox_CD">Ei saa määrata</label><br>
+                    </div>
+                    
+                    <div id="tumor_margins_positive_other_div">
+                        <br>
+                        <label  for="tumor_margins_positive_dist_from_Anterior">Anterioorne</label> 
+                        <input type="text" id="tumor_margins_positive_dist_from_Anterior" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="tumor_margins_positive_dist_from_Posterior">Posterioorne</label> 
+                        <input type="text" id="tumor_margins_positive_dist_from_Posterior" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="tumor_margins_positive_dist_from_Superior">Superioorne</label> 
+                        <input type="text" id="tumor_margins_positive_dist_from_Superior" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="tumor_margins_positive_dist_from_Inferior">Inferioorne</label> 
+                        <input type="text" id="tumor_margins_positive_dist_from_Inferior" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="tumor_margins_positive_dist_from_Medial">Mediaalne</label> 
+                        <input type="text" id="tumor_margins_positive_dist_from_Medial" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label  for="tumor_margins_positive_dist_from_Lateral">Lateraalne</label> 
+                        <input type="text" id="tumor_margins_positive_dist_from_Lateral" class="only_numbers addunits margins_positive_class" placeholder="mm"  ><br>
+                        <label for="tumor_margins_positive_dist_from_Other">Muu</label> 
+                        <input type="text" id="tumor_margins_positive_dist_from_Other" class="margins_positive_class" placeholder="Specify margin"><br>
+                        <input type="checkbox" class="margins_positive_class" name="tumor_margins_positive_location"id="tumor_margins_positive_CA" value="Ei saa määrata"> 
+                        <label for="tumor_margins_positive_CA">Ei saa määrata</label> <br>
+                    </div>
+                </div>
+            </div>
+
+            <br><br>
+            
+            <h3>Lümfisõlmed</h3>
+
+            <fieldset style="background-color: #daeeff;" class="lymph-nodes-block" >           
+                <select id="regional_lymph_nodes" style="padding: 4px 2px; width: 100%;">
+                    <option value="Ei ole saadetud / leitud" selected="selected">Ei ole saadetud / leitud</option>        
+                    <option value="Sisaldavad kasvajarakke">Sisaldavad kasvajarakke</option>
+                    <option value="Ei sisalda kasvajarakke">Ei sisalda kasvajarakke</option>
+                </select>
+                <div id="lymph_nodes_tables">
+                    <div id="regional_lymph_nodes_block_specified" style="display: none;">
+                        <table id="regional_lymph_nodes_specified_table"> 
+                            <tbody valign='middle' style="font-size: larger;">
+                                <br><br>
+                                <tr class ="w3_heading">
+                                        <th><label for="regional_lymph_nodes_specified_name">Asukoht: </label></th>
+                                        <th><label for="regional_lymph_nodes_specified_details">Täpsustus: </label></th>
+                                        <th><label for="regional_lymph_nodes_specified_ls">Lümfisõlmi kokku selles asukohas: </label></th>
+                                        <th><label  for="regional_lymph_nodes_specified_guardians"> Kasvajarakkude poolt haaratud valvurlümfisõlmi: </label></th>
+                                        <th ><label  for="regional_lymph_nodes_specified_macrometa">L/S makrometastaasidega: </label>
+                                            <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> Suuremad kui 2mm</p></span>
+                                            </th>
+                                        <th><label for="regional_lymph_nodes_specified_micrometa">L/S mikrometastaasidega: </label>
+                                            <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> &gt;0.2 mm kuni 2 mm ja/või &gt;200 raku</p></span>
+                                            </th>
+                                        <th><label for="regional_lymph_nodes_specified_metasmall">L/S isoleeritud kasvajarakkudega: </label>
+                                            <span class="tooltip"><img src="info.png" style="width: 15px;height: 15px;" alt="i" ><p class="tooltiptext2"> &le;0.2 mm või &le;200 raku</p></span>
+                                            </th>
+                                        <th><span style="padding-right: 60px;"> </span></th>
+                                </tr>
+                                <tr>
+                                    <td><p>Ipsilateraalsed supraklavikulaatsed lümfisõlmed</p></td>
+                                    <td><input type="text" id="supraclavicular_specified_details" placeholder="Kommentaarid"></td>
+                                    <td><input type="text" class="only_numbers" id="supraclavicular_lymph_nodes_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="supraclavicular_lymph_nodes_guardians" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="supraclavicular_lymph_nodes_macrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="supraclavicular_lymph_nodes_micrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="supraclavicular_lymph_nodes_metasmall" placeholder="0"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Ipsilateraalsed sisemised rinnalümfisõlmed</p></td>
+                                    <td><input type="text" id="int_mammary_specified_details" placeholder="Kommentaarid"></td>
+                                    <td><input type="text" class="only_numbers" id="int_mammary_lymph_nodes_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="int_mammary_lymph_nodes_guardians" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="int_mammary_lymph_nodes_macrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="int_mammary_lymph_nodes_micrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="int_mammary_lymph_nodes_metasmall" placeholder="0"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Infraklavikulaarsed lümfisõlmed</p></td>
+                                    <td><input type="text" id="infraclavicular_specified_details" placeholder="Kommentaarid"></td>
+                                    <td><input type="text" class="only_numbers" id="infraclavicular_lymph_nodes_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="infraclavicular_lymph_nodes_guardians" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="infraclavicular_lymph_nodes_macrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="infraclavicular_lymph_nodes_micrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="infraclavicular_lymph_nodes_metasmall" placeholder="0"></td>
+                                </tr>
+                                <tr>
+                                    <td><p>Aksillaarsed lümfisõlmed</p></td>
+                                    <td><input type="text" id="axillary_specified_details" placeholder="Kommentaarid" ></td>
+                                    <td><input type="text" class="only_numbers" id="axillary_lymph_nodes_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="axillary_lymph_nodes_guardians" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="axillary_lymph_nodes_macrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="axillary_lymph_nodes_micrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="axillary_lymph_nodes_metasmall" placeholder="0"></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" id="regional_lymph_nodes_specified_name" placeholder="Specify" ></td>
+                                    <td><input type="text" id="regional_lymph_nodes_specified_details" placeholder="Kommentaarid"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_guardians" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_macrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_micrometa" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" name="regional_lymph_nodes_specified_metasmall" placeholder="0"></td>
+                                    <td><button class="btn btn-default btn-xs remove-row">Delete</button></td>
+                                </tr>
+                            </tbody>
+                            <tfoot >
+                                <tr>
+                                    <td>
+                                        <br><br>
+                                        <button class="btn btn-default btn-xs" id="regional_lymph_nodes_add_row" >
+                                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Lisa asukoht
+                                        </button>
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td style="padding-top: 20px;" colspan="5">
+                                        <div id="lymph_nodes_table_footer_div">
+                                            <label for="largest_metastatic_dep_size">Suurima metastaatilise kolde suurus</label>
+                                            <input type="text" id="largest_metastatic_dep_size" class="only_numbers addunits" placeholder="mm">
+                                            <h4>Ekstranodaalne laienemine:</h4>
+                                            <input type="radio" name="extranodal_extension_radio" id="extranodal_extension_radio_NA" value="Ekstranodaalset leienemist ei ole tuvastatud">
+                                            <label for="extranodal_extension_radio_NA">Ei ole tuvastatud</label><br>
+                                            <input type="radio" name="extranodal_extension_radio" id="extranodal_extension_radio_present" value="Esineb ekstranodaalne laienemine">
+                                            <label for="extranodal_extension_radio_present">Esineb</label><br>
+                                            <input type="radio" name="extranodal_extension_radio" id="extranodal_extension_radio_CA" value="Ekstranodaalset laienemist ei saa hinnata">
+                                            <label for="extranodal_extension_radio_CA">Ei saa hinnata</label><br>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="7">
+                                        <br><br><br>
+                                        <input type="checkbox" name="internal_mammary" id="meta_internal_mammary" >
+                                        <label for="meta_internal_mammary"><b>Metastaasid kliiniliselt avastatud sisemistes rinnalümfisõlmedes (kas mikroskoopilise kinnitusega või ilma)</b></label>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                        
+                       
+                    </div>
+                    <div id="regional_lymph_nodes_block_general" style="display:none;">
+                        <table id="regional_lymph_nodes_general_table">        
+                            <tbody>
+                                <br><br>
+                                <tr class ="w3_heading" style="width: 100%;">
+                                        <th><label for="regional_lymph_nodes_general_ls">Kokku lümfisõlmi uuritud: </label></th>
+                                        <th><label for="regional_lymph_nodes_general_guardians">Valvurlümfisõlmi uuritud: </label></th>
+                                        <th><label for="regional_lymph_nodes_general_details">Täpsusta: </label></th>                                    
+                                </tr>
+                                <tr>                                    
+                                    <td><input type="text" class="only_numbers" id="regional_lymph_nodes_general_ls" placeholder="0"></td>
+                                    <td><input type="text" class="only_numbers" id="regional_lymph_nodes_general_guardians" placeholder="0"></td>
+                                    <td><input type="text" id="regional_lymph_nodes_general_details" placeholder="Täpsusta:"></td>                                    
+                                </tr>     
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </fieldset>
+
+            <br><br>
+
+            <div id="lymphovascular_in_div">
+                <h3>Lümfovaskulaarne invasioon</h3>
+                 <input type="radio" id="lymphovascular_invasion_NA" name="lymphovascular_invasion" value="Ei ole tuvastatud" onclick="radioInput(this, false)">
+                 <label for="lymphovascular_invasion_NA">Ei ole tuvastatud</label><br>
+                 <input type="radio" id="lymphovascular_invasion_present" name="lymphovascular_invasion" value="Esineb" onclick="radioInput(this, false)">
+                 <label for="lymphovascular_invasion_present">Esineb</label><br>
+                 <input type="radio" id="lymphovascular_invasion_CD" name="lymphovascular_invasion" value="Ei saa määrata" onclick="radioInput(this, true)">
+                 <label for="lymphovascular_invasion_CD">Ei saa määrata</label>
+            </div>
+ 
+            <br><br>
+
+            <div id="dermal_lymph_inv_div">
+                <h3>Naha lümfovaskulaarne invasioon</h3>
+                <input type="radio" name="dermal_lymphv_invasion_radio" id="dermal_lymphv_invasion_radio_no_skin" value="Nahka preparaadis ei esine">
+                <label for="dermal_lymphv_invasion_radio_no_skin">Nahka preparaadis ei esine</label><br>
+                <input type="radio" name="dermal_lymphv_invasion_radio" id="dermal_lymphv_invasion_radio_NA" value="Ei ole tuvastatud">
+                <label for="dermal_lymphv_invasion_radio_NA">Ei ole tuvastatud</label><br>
+                <input type="radio" name="dermal_lymphv_invasion_radio" id="dermal_lymphv_invasion_radio_present" value="Esineb">
+                <label for="dermal_lymphv_invasion_radio_present">Esineb</label><br>
+                <input type="radio" name="dermal_lymphv_invasion_radio" id="dermal_lymphv_invasion_radio_CD" value="Ei saa määrata">
+                <label for="dermal_lymphv_invasion_radio_CD">Ei saa määrata</label><br>
+            </div>
+
+
+            <br><br>
+
+            <div id="distal_metastases_div">
+                <h3>Kaugmetastaasid</h3>
+                <input type="checkbox" id="distal_metastases_lung" class="distal_metastases" value="Kopsus">
+                <label for="distal_metastases_lung">Kops</label><br>
+                <input type="checkbox" id="distal_metastases_liver" class="distal_metastases" value="Maksas">
+                <label for="distal_metastases_liver">Maks</label><br>
+                <input type="checkbox" id="distal_metastases_bone" class="distal_metastases" value="Luu(de)s">
+                <label for="distal_metastases_bone">Luu</label><br>
+                <input type="checkbox" id="distal_metastases_other" class="distal_metastases" value="Mujal" onclick="cboxInput(this)">
+                <label for="distal_metastases_other">Mujal</label>
+                
+            </div>
+
+            <br><br>
+
+            
+            <h2>Lisainfo</h2>
+            
+            <div id="clinical_findings">
+                <h3>Kliinilised lisaleiud</h3>
+                <input type="checkbox" name="clinical_find" id="clinical_find_erythema" value="Erüteem">
+                <label for="clinical_find_erythema">Erüteem</label><br>
+                <input type="checkbox" name="clinical_find" id="clinical_find_inv_skin_less" value="Ödeem, mis haarab vähem kui 1/3 nahast">
+                <label for="clinical_find_inv_skin_less">Ödeem, mis haarab vähem kui 1/3 nahast</label><br>
+                <input type="checkbox" name="clinical_find" id="clinical_find_inv_skin_more" value="Ödeem haarab nahast 1/3 või rohkem">
+                <label for="clinical_find_inv_skin_more">Ödeem haarab nahast 1/3 või rohkem</label><br>
+            </div>
+            <br><br>
+            <input type="checkbox" name="mol_studies" id="mol_studies_pcr_pos">
+            <label for="mol_studies_pcr_pos">Positiivne molekulaarne leid (RT-PCR)</label><br><br>
+
+            <div id="ancillary_studies_div">
+                <h3>Lisauuringud</h3>
+                <textarea id="extra_findings_text" rows="4" cols="50" placeholder="Kirjelda vabas vormis "></textarea><br>
+            </div>
+
+            <div id="comments_div">
+                <h3>Kommentaarid</h3>
+                <textarea id="invasion_comments_text" rows="4" cols="50" placeholder="Kirjelda vabas vormis "></textarea>
+                <br>
+            </div>
+
+            <button class="btn btn-primary" id="calc_results_btn">Arvuta tulemused</button>
+
+            <span id="results_title" class="form-title" style="margin-top: 25px; display: none;">TULEMUSED</span>
+
+            <div id="results_block" style=" display: none; margin-top: 25px; font-size: 11px; background-color: rgb(255, 255, 255); border: 1px solid rgb(61, 61, 61); padding: 10px;"><br><br>
+            </div>
+            <div id="results_copy_block" style="margin-top: 25px; display: none">
+                <button class="btn btn-primary" id="copy_result_btn">Kopeeri tekst</button>
+                <br>
+                <span id="copy_result"></span>
+            </div>
+
+        </div>
+    </body>
+    <footer>
+        <script src="invasive_breasttumor_script_eesti.js"></script>
+    </footer>
+</html>
