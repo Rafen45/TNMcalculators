@@ -274,13 +274,20 @@ $(document).ready(function(){
     $("input[name='tumor_margins_radio']").on("change", function(){
         show_hide("#tumor_margins_positive", "#tumor_margins_positive_div")
     })
-    $("input[name='tumor_margins_positive_location']:not('#tumor_margins_positive_CA')").on("click", function(){
+
+    $("input[name='tumor_margins_pos_cbox']:not('#tumor_margins_pos_cbox_CD')").on("click", function(){
         cboxInput(this, " ", "Specify extent")
+    })
+    $("#tumor_margins_pos_cbox_CD").on("click", function(){
+        cboxInput(this, null, "Specify")
+        disable_class(this)
     })
     $("#tumor_margins_positive_CA").on("click", function(){
         cboxInput(this, null, "Specify")
         disable_class(this)
     })
+
+
     $("#calculator_button").on("click", function(){
        $(".hidden_calc").toggle()
        $("#field_diameter").prop("disabled", $("#calculator_div").is(":visible"))
@@ -601,6 +608,17 @@ const tumExtObj = {
     heading: "</br>Tumor Extension: </br> &#8212; ",
     join: "</br> &#8212; "
 }
+const tumMarPosObj = {
+    input_div_id: "#tumor_margin_pos_cbox_div",
+    heading: "Positive for invasive carcinoma: ",
+    join:  " ",
+    extra_text: "&#8195; Specification: "
+}
+const tumMarPosOtherObj = {
+    input_div_id: "#tumor_margins_positive_other_div",
+    heading: "Distance from other margins: </br> &#8212;",
+    join:  "</br> &#8212; ",
+}
 
 var HeadingObjArray = [ 
     "#tumor_parameters_div", 
@@ -615,6 +633,8 @@ var HeadingObjArray = [
     "#nuclear_grade_div",
     "#necrosis_div",
     "#margins_div",
+    tumMarPosObj,
+    tumMarPosOtherObj,
     "#LCIS_div",
     tumExtObj,
     "#tumor_margins_div"
